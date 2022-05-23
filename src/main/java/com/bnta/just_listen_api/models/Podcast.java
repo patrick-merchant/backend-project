@@ -1,19 +1,40 @@
 package com.bnta.just_listen_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "podcasts")
 public class Podcast {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
+    @Column
     private String title;
+
+    @Column
     private String triggerWarning;
+
+    @Column
     private String description;
+
+    @Column
     private String category;
+
+    @Column
     private float rating;
 
+    @Column
     private String sources;
 
+    @OneToMany(mappedBy = "podcast")
+    @JsonIgnoreProperties({"podcast"}) // is this necessary?
     private List<Episode> podcastEpisodes;
 
 
