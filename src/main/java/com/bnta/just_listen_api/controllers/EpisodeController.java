@@ -32,7 +32,7 @@ public class EpisodeController {
 
     // POST
     @PostMapping
-    public ResponseEntity createEpisode(@RequestBody Episode newEpisode) {
+    public ResponseEntity<Episode> createEpisode(@RequestBody Episode newEpisode) {
         episodeRepository.save(newEpisode);
         return new ResponseEntity<>(newEpisode, HttpStatus.CREATED);
     }
