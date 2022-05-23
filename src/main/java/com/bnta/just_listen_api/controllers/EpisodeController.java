@@ -37,6 +37,11 @@ public class EpisodeController {
         return new ResponseEntity<>(newEpisode, HttpStatus.CREATED);
     }
 
-
+    // DELETE
+    @DeleteMapping("/{id")
+    public ResponseEntity<Long> deleteEpisode (@PathVariable("id") Long id) {
+        episodeRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 }
 
