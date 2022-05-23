@@ -1,15 +1,33 @@
 package com.bnta.just_listen_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "contributors")
 public class Contributor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String profession;
+
+    @ManyToMany(mappedBy = "contributors")
+    @JsonIgnoreProperties({"contributors"})
     private List<Episode> episodesFeaturing;
+
+    @Column
     private boolean isPresenter;
+
 
     //constructors(2)
 
