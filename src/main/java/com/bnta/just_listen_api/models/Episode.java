@@ -1,17 +1,44 @@
 package com.bnta.just_listen_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "episodes")
 public class Episode {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private int duration;
+
+    @Column
     private LocalDate datePosted;
+
+    @ManyToMany
+    @JsonIgnoreProperties({"episodes"})
+    @JoinTable(
+            name = "episodes_contributors",
+            joinColumns = {@JoinColumn(name = "episode_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "contributor_id", nullable = false)})
     private List<Contributor> contributors;
+
+    @ManyToOne
+    @JsonIgnoreProperties({"episode"}) // singular or plural?
+    @JoinColumn(name = "podcast_id") // nullable?
     private Podcast podcast;
 
     // DEFAULT CONSTRUCTOR
