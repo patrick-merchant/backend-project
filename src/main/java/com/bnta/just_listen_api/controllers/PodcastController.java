@@ -15,7 +15,7 @@ import java.util.Optional;
 public class PodcastController {
 
     @Autowired
-    PodcastRepository podcastRepository;
+    private PodcastRepository podcastRepository;
 
     // INDEX
     @GetMapping // localhost:8080/podcasts
@@ -30,8 +30,8 @@ public class PodcastController {
         return new ResponseEntity<>(product, product.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
-    // CREATE
-    @PostMapping // POST localhost:8080/podcasts
+    // POST
+    @PostMapping // localhost:8080/podcasts
     public ResponseEntity<Podcast> createPodcast(@RequestBody Podcast newPodcast) {
         podcastRepository.save(newPodcast);
         return new ResponseEntity<>(newPodcast, HttpStatus.CREATED);

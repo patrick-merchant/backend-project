@@ -18,27 +18,27 @@ public class EpisodeController {
     private EpisodeRepository episodeRepository;
 
     // INDEX
-    @GetMapping
+    @GetMapping // localhost:8080/episodes
     public ResponseEntity<List<Episode>> getEpisodes() {
         return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
     }
 
     // SHOW
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
     public ResponseEntity<Optional<Episode>> getEpisode(@PathVariable Long id) {
         var episode = episodeRepository.findById(id);
         return new ResponseEntity<>(episode, episode.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     // POST
-    @PostMapping
+    @PostMapping // localhost:8080/episodes
     public ResponseEntity<Episode> createEpisode(@RequestBody Episode newEpisode) {
         episodeRepository.save(newEpisode);
         return new ResponseEntity<>(newEpisode, HttpStatus.CREATED);
     }
 
     // DELETE
-    @DeleteMapping("/{id")
+    @DeleteMapping("/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
     public ResponseEntity<Long> deleteEpisode (@PathVariable("id") Long id) {
         episodeRepository.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);

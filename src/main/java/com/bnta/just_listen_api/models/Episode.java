@@ -42,12 +42,11 @@ public class Episode {
     private Podcast podcast;
 
     // DEFAULT CONSTRUCTOR
-    public Episode(){
-
+    public Episode() {
     }
 
     // CONSTRUCTOR
-    public Episode(String name, String description, int duration, LocalDate datePosted, Podcast podcast){
+    public Episode(String name, String description, int duration, LocalDate datePosted, Podcast podcast) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -56,8 +55,8 @@ public class Episode {
         this.podcast = podcast;
     }
 
-    // GETTERS & SETTERS
 
+    // GETTERS & SETTERS
     public Long getId() {
         return id;
     }
@@ -109,6 +108,7 @@ public class Episode {
     public void setPodcast(Podcast podcast) {
         this.podcast = podcast;
     }
+
 
     @Override
     public String toString() {

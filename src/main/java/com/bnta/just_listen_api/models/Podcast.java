@@ -42,6 +42,7 @@ public class Podcast {
     public Podcast() {
     }
 
+    // CONSTRUCTOR
     public Podcast(String title, String triggerWarning, String description, String category,
                    float rating, String sources) {
         this.title = title;
@@ -54,7 +55,7 @@ public class Podcast {
     }
 
 
-    // Getters & Setters
+    // GETTERS & SETTERS
     public Long getId() {
         return id;
     }

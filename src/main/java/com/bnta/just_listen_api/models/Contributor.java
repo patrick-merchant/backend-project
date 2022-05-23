@@ -29,15 +29,12 @@ public class Contributor {
     private boolean isPresenter;
 
 
-    //constructors(2)
-
-    //(1) no args constructor
+    // DEFAULT CONSTRUCTORS
     public Contributor() {
     }
 
-    //(2) args constructor
 
-
+    // CONSTRUCTOR
     public Contributor(String name, String profession, boolean isPresenter) {
         this.name = name;
         this.profession = profession;
@@ -45,9 +42,8 @@ public class Contributor {
         this.episodesFeaturing = new ArrayList<Episode>();
     }
 
-    //Getters + Setters
 
-
+    // GETTERS & SETTERS
     public Long getId() {
         return id;
     }
@@ -83,6 +79,7 @@ public class Contributor {
     public void setPresenter(boolean presenter) {
         isPresenter = presenter;
     }
+
 
     @Override
     public String toString() {

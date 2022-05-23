@@ -4,7 +4,6 @@ package com.bnta.just_listen_api.controllers;
 import com.bnta.just_listen_api.models.Contributor;
 import com.bnta.just_listen_api.repositories.ContributorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,37 +17,33 @@ import java.util.Optional;
 public class ContributorController {
 
     @Autowired
-    ContributorRepository contributorRepository;
+    private ContributorRepository contributorRepository;
 
-    //INDEX
-    @GetMapping
+    // INDEX
+    @GetMapping // localhost:8080/contributors
     public ResponseEntity<List<Contributor>> getContributors() {
         return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
-
-    }
-    //SHOW
-    @GetMapping(value ="/{id}")
-
-    public ResponseEntity<Optional<Contributor>>getContributor(@PathVariable Long id) {
-        return new ResponseEntity<>(contributorRepository.findById(id),HttpStatus.OK);
-
     }
 
-    //POST
-    @PostMapping
+    // SHOW
+    @GetMapping(value ="/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
+    public ResponseEntity<Optional<Contributor>> getContributor(@PathVariable Long id) {
+        var contributor =  contributorRepository.findById(id);
+        return new ResponseEntity<>(contributor, contributor.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    }
+
+    // POST
+    @PostMapping // localhost:8080/contributors
     public ResponseEntity<Contributor> createContributor(@RequestBody Contributor newContributor){
         contributorRepository.save(newContributor);
         return  new ResponseEntity<>(newContributor, HttpStatus.CREATED);
-
     }
 
-    //DELETE
-
-    @DeleteMapping("/{id}")
+    // DELETE
+    @DeleteMapping("/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
     public ResponseEntity<Long> deleteContributor (@PathVariable("id") Long id) {
         contributorRepository.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
-
     }
 
 }
