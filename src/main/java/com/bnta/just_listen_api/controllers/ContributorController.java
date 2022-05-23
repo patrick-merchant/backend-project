@@ -26,5 +26,14 @@ public class ContributorController {
         return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
 
     }
+    //SHOW
+    @GetMapping(value ="/{id}")
+
+    public ResponseEntity<Optional<Contributor>>getContributor(@PathVariable Long id) {
+        return new ResponseEntity<>(contributorRepository.findById(id),HttpStatus.OK);
+
+
+
+    }
 
 }
