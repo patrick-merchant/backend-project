@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("episodes")
@@ -24,6 +26,13 @@ public class EpisodeController {
         return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
     }
 
-    
+    // SHOW
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Episode>> getEpisode(@PathVariable Long id) {
+        var episode = episodeRepository.findById(id);
+        return new ResponseEntity<>(episode, episode.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    }
+
+
 }
 
