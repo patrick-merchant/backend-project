@@ -32,7 +32,13 @@ public class ContributorController {
     public ResponseEntity<Optional<Contributor>>getContributor(@PathVariable Long id) {
         return new ResponseEntity<>(contributorRepository.findById(id),HttpStatus.OK);
 
+    }
 
+    //POST
+    @PostMapping
+    public ResponseEntity<Contributor> createContributor(@RequestBody Contributor newContributor){
+        contributorRepository.save(newContributor);
+        return  new ResponseEntity<>(newContributor, HttpStatus.CREATED);
 
     }
 
