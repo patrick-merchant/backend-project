@@ -37,5 +37,10 @@ public class PodcastController {
         return new ResponseEntity<>(newPodcast, HttpStatus.CREATED);
     }
 
-
+    // DELETE
+    @DeleteMapping("/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
+    public ResponseEntity<Long> deletePodcast(@PathVariable("id") Long id) {
+        podcastRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 }
