@@ -1,4 +1,7 @@
 package com.bnta.just_listen_api.repositories;
 
-public interface ContributorRepository {
+import com.bnta.just_listen_api.models.Contributor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ContributorRepository extends JpaRepository<Contributor, Long> {
 }
