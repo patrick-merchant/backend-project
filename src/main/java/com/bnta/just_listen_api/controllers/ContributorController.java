@@ -42,4 +42,13 @@ public class ContributorController {
 
     }
 
+    //DELETE
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleteContributor (@PathVariable("id") Long id) {
+        contributorRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+
+    }
+
 }
