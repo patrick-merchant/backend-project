@@ -40,7 +40,12 @@ public class DataLoader implements ApplicationRunner {
                 "Comedy", (float) 4.7, "Acast, Spotify, ApplePodcasts");
         Podcast filmsToBeBuriedWith = new Podcast("Films To Be Buried With", "Death", "We are born. We die. In between we watch a lot of films. And some of these films shape the people we are. " +
                 "This is a podcast about those films. (And a bit about death.)", "Comedy", (float) 4.8, "Spotify, ApplePodcasts, Acast");
-        podcastRepository.saveAll(Arrays.asList(offMenu, noSuchThing, diaryOfACEO, distractionPieces, filmsToBeBuriedWith));
+        Podcast badTrueCrimePodcast = new Podcast("A Bad True Crime Podcast", "Death, Violence", "Someone has been accused of murder. Did they do it?",
+                "True Crime", (float) 2.3, "Acast");
+        Podcast averageSportsPodcast = new Podcast("An Average Sports Podcast", "Gambling", "Footballer Peter Crouch has made another podcast - it's alright.",
+                "Sport", (float) 3.7, "Spotify");
+
+        podcastRepository.saveAll(Arrays.asList(offMenu, noSuchThing, diaryOfACEO, distractionPieces, filmsToBeBuriedWith, badTrueCrimePodcast, averageSportsPodcast));
 
         // add some contributors.
         Contributor jamesAcasterPresenter = new Contributor("James Acaster", "Comedian", true);
@@ -57,9 +62,13 @@ public class DataLoader implements ApplicationRunner {
         Contributor annaPtaszynski = new Contributor("Anna Ptaszynski", "Researcher, Podcaster", true);
         Contributor stevenBartlett = new Contributor("Steven Bartlett", "Entrepreneur", true);
         Contributor simonSinek = new Contributor("Simon Sinek", "Author, Public Speaker", false);
+        Contributor sherlockHolmes = new Contributor("Sherlock Holmes", "Private Detective", false);
+        Contributor drWatson = new Contributor("Dr John Watson", "Blogger, Podcaster", true);
+        Contributor peterCrouch = new Contributor("Peter Crouch", "Footballer, Podcaster", true);
+        Contributor garyLineker = new Contributor("Gary Lineker", "Footballer, Pundit", false);
         contributorRepository.saveAll(Arrays.asList(jamesAcasterPresenter, jamesAcasterGuest, edGamblePresenter, edGambleGuest,
                 brettGoldsteinPresenter, brettGoldsteinGuest, scroobiusPipGuest, scroobiusPipPresenter, danSchreiber, jamesHarkin,
-                        andrewHunterMurray, annaPtaszynski, stevenBartlett, simonSinek));
+                        andrewHunterMurray, annaPtaszynski, stevenBartlett, simonSinek, sherlockHolmes, drWatson, peterCrouch, garyLineker));
 
 
         // add some episodes.
@@ -105,8 +114,12 @@ public class DataLoader implements ApplicationRunner {
         Episode filmsToBeBuriedWith_Ep104 = new Episode("#104: Ed Gamble - The Resurrection", "Now I know what you’re all thinking, didn’t Ed die in an earlier episode " +
                 "yadda yadda yadda but HOLD ON… Explanations are needed." , 63, LocalDate.of(2020, 7, 16),
                 filmsToBeBuriedWith, Arrays.asList(brettGoldsteinPresenter, edGambleGuest));
+        Episode badTrueCrimePodcast_Ep1 = new Episode("Ep 1: The Crime", "There was a crime. It was bad.", 45, LocalDate.of(2020, 4, 13),
+                badTrueCrimePodcast, Arrays.asList(drWatson, sherlockHolmes));
+        Episode averageSportsPodcast_Ep1 = new Episode("The Football This Week", "There were football matches this week. They were good.", 30, LocalDate.of(2021, 9, 19),
+                averageSportsPodcast, Arrays.asList(peterCrouch, garyLineker));
         episodeRepository.saveAll(Arrays.asList(offMenu_Ep1, offMenu_EpGoldstein1, noSuchThing_Ep1, diaryOfACEO_Ep145,
                 distractionPieces_Ep265, distractionPieces_Ep104, distractionPieces_Ep325, filmsToBeBuriedWith_Ep4, filmsToBeBuriedWith_Ep150, filmsToBeBuriedWith_Ep1, filmsToBeBuriedWith_Ep100,
-                filmsToBeBuriedWith_Ep9, filmsToBeBuriedWith_Ep104));
+                filmsToBeBuriedWith_Ep9, filmsToBeBuriedWith_Ep104, badTrueCrimePodcast_Ep1, averageSportsPodcast_Ep1));
     }
 }
