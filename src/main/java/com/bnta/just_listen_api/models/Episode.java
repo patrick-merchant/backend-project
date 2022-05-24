@@ -46,13 +46,13 @@ public class Episode {
     }
 
     // CONSTRUCTOR
-    public Episode(String name, String description, int duration, LocalDate datePosted, Podcast podcast) {
+    public Episode(String name, String description, int duration, LocalDate datePosted, Podcast podcast, List<Contributor> contributors) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.datePosted = datePosted;
-        this.contributors = new ArrayList<>();
         this.podcast = podcast;
+        this.contributors = contributors;
     }
 
 
