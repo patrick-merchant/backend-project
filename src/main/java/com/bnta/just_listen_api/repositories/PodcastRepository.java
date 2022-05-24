@@ -14,7 +14,7 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
     List<Podcast> findPodcastByRatingGreaterThan (float rating);
     List<Podcast> findPodcastBySourcesContainingIgnoreCase (String sources);
 
-    // TRAVERSE QUERY
+    // traverses association between Podcast and Episode
     List<Podcast> findByPodcastEpisodesNameContainingIgnoreCase (String infix);
 
 }
