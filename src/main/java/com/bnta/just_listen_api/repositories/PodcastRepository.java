@@ -10,8 +10,8 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
     // DERIVED QUERIES
     List<Podcast> findPodcastByTitleContainingIgnoreCase (String title);
     List<Podcast> findPodcastByDescriptionContainingIgnoreCase (String description);
-    List<Podcast> findPodcastByCategoryIgnoreCase (String category);
+    List<Podcast> findPodcastByCategoryContainingIgnoreCase (String category);
     List<Podcast> findPodcastByRatingGreaterThan (float rating);
-    List<Podcast> findPodcastBySource (String source);
+    List<Podcast> findPodcastBySourcesContainingIgnoreCase (String sources);
 
 }
