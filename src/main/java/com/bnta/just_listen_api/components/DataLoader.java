@@ -39,8 +39,10 @@ public class DataLoader implements ApplicationRunner {
         podcastRepository.saveAll(Arrays.asList(offMenu, noSuchThing, diaryOfACEO));
 
         // add some contributors.
-        Contributor jamesAcaster = new Contributor("James Acaster", "Comedian", true);
-        Contributor edGamble = new Contributor("Ed Gamble", "Comedian", true);
+        Contributor jamesAcasterPresenter = new Contributor("James Acaster", "Comedian", true);
+        Contributor edGamblePresenter = new Contributor("Ed Gamble", "Comedian", true);
+        Contributor brettGoldsteinPresenter = new Contributor("Brett Goldstein", "Comedian, Actor", true);
+        Contributor brettGoldsteinGuest = new Contributor("Brett Goldstein", "Comedian, Actor", false);
         Contributor scroobiusPip = new Contributor("Scroobius Pip", "Podcaster", false);
         Contributor danSchreiber = new Contributor("Dan Schreiber", "Researcher, Podcaster", true);
         Contributor jamesHarkin = new Contributor("James Harkin", "Researcher, Podcaster", true);
@@ -48,14 +50,17 @@ public class DataLoader implements ApplicationRunner {
         Contributor annaPtaszynski = new Contributor("Anna Ptaszynski", "Researcher, Podcaster", true);
         Contributor stevenBartlett = new Contributor("Steven Bartlett", "Entrepreneur", true);
         Contributor simonSinek = new Contributor("Simon Sinek", "Author, Public Speaker", false);
-        contributorRepository.saveAll(Arrays.asList(jamesAcaster, edGamble, scroobiusPip, danSchreiber, jamesHarkin,
+        contributorRepository.saveAll(Arrays.asList(jamesAcasterPresenter, edGamblePresenter, scroobiusPip, danSchreiber, jamesHarkin,
                         andrewHunterMurray, annaPtaszynski, stevenBartlett, simonSinek));
 
 
         // add some episodes.
         Episode offMenu_Ep1 = new Episode("Ep 1: Scroobius Pip","It’s the grand opening of the magical restaurant and the" +
                 " first guest through the doors is Mr Podcast himself, Scroobius Pip.", 66, LocalDate.of(2018,12,05),
-                offMenu, Arrays.asList(jamesAcaster,edGamble,scroobiusPip));
+                offMenu, Arrays.asList(jamesAcasterPresenter,edGamblePresenter,scroobiusPip));
+        Episode offMenu_EpGoldstein1 = new Episode("Menus To Be Buried With", "Look out, it's only a crossover episode! Peddy Bambles " +
+                "and The Genie team up with Bradley Goldstein for this Acast Red Nose Day Mashup podcast, all in aid of Comic Relief.",
+                65, LocalDate.of(2021, 03, 14), offMenu, Arrays.asList(jamesAcasterPresenter, edGamblePresenter, brettGoldsteinGuest));
         Episode noSuchThing_Ep1 = new Episode("No Such Thing As A Magnetic Skate Board", "Dan, James, " +
                 "Anna and Andy discuss a cupboard full of clown heads, " +
                 "the robot that doesn’t jump over the moon and the rock and roll side of pension planning.",54,
