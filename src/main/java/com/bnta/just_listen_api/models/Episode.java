@@ -37,7 +37,7 @@ public class Episode {
     private List<Contributor> contributors;
 
     @ManyToOne
-    @JsonIgnoreProperties({"episode"}) // singular or plural?
+    @JsonIgnoreProperties({"podcastEpisodes"}) // singular or plural?
     @JoinColumn(name = "podcast_id") // nullable?
     private Podcast podcast;
 
