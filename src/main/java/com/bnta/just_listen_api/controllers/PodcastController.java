@@ -31,21 +31,19 @@ public class PodcastController {
         return new ResponseEntity<>(product, product.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
-//    //UPDATE
-//    @PutMapping(value="/podcasts/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
-//    public ResponseEntity<Podcast> putPodcast(@RequestBody Podcast podcast, @PathVariable Long id){
-//        Podcast podcastToUpdate = podcastRepository.findById(id).get();
-//        podcastToUpdate.setTitle(podcast.getTitle());
-//        podcastToUpdate.setContentNote(podcast.getContentNote());
-//        podcastToUpdate.setDescription(podcast.getDescription());
-//        podcastToUpdate.setCategory(podcast.getCategory());
-//        podcastToUpdate.setRating(podcast.getRating());
-//        podcastToUpdate.setSources(podcast.getSources());
-//        podcastToUpdate.setPodcastEpisodes(podcast.getPodcastEpisodes());
-//
-//        podcastRepository.save(podcastToUpdate);
-//        return new ResponseEntity<>(podcastToUpdate, HttpStatus.OK);
-//    }
+    //UPDATE
+    @PutMapping(value="/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
+    public ResponseEntity<Podcast> putPodcast(@RequestBody Podcast podcast, @PathVariable Long id){
+        Podcast podcastToUpdate = podcastRepository.findById(id).get();
+        podcastToUpdate.setTitle(podcast.getTitle());
+        podcastToUpdate.setContentNote(podcast.getContentNote());
+        podcastToUpdate.setDescription(podcast.getDescription());
+        podcastToUpdate.setCategory(podcast.getCategory());
+        podcastToUpdate.setRating(podcast.getRating());
+        podcastToUpdate.setSources(podcast.getSources());
+        podcastRepository.save(podcastToUpdate);
+        return new ResponseEntity<>(podcastToUpdate, HttpStatus.OK);
+    }
 
     // POST
     @PostMapping // localhost:8080/podcasts
