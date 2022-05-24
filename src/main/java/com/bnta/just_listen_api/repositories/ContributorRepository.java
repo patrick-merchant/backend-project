@@ -10,6 +10,6 @@ public interface ContributorRepository extends JpaRepository<Contributor, Long> 
     // DERIVED QUERIES
     List<Contributor> findContributorByNameContainingIgnoreCase (String name);
     List<Contributor> findContributorByProfessionContainingIgnoreCase (String profession);
-    List<Contributor> findContributorByIsPresentContainingIgnoreCase (boolean isPresenter);
+    List<Contributor> findContributorByIsPresenter (boolean isPresenter);
 
 }

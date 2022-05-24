@@ -1,7 +1,9 @@
 package com.bnta.just_listen_api;
 
+import com.bnta.just_listen_api.models.Contributor;
 import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.models.Podcast;
+import com.bnta.just_listen_api.repositories.ContributorRepository;
 import com.bnta.just_listen_api.repositories.EpisodeRepository;
 import com.bnta.just_listen_api.repositories.PodcastRepository;
 import org.junit.jupiter.api.Test;
@@ -21,9 +23,14 @@ class JustListenApiApplicationTests {
 	@Autowired
 	PodcastRepository podcastRepository;
 
+	@Autowired
+	ContributorRepository contributorRepository;
+
 	@Test
 	void contextLoads() {
 	}
+
+	//------------------------------ Episode Query Tests -------------------------------\\
 
 	@Test
 	public void canFindEpisodeByNameContainingEp1 () {
@@ -50,10 +57,13 @@ class JustListenApiApplicationTests {
 	}
 
 	@Test
-	public void canFindByEpisodeDurationLessThan() {
+	public void canFindByEpisodeDurationLessThan60 () {
 		List<Episode> found = episodeRepository.findEpisodeByDurationLessThan(60);
 		assertThat(found.size()).isEqualTo(1);
 	}
+
+
+	//------------------------------ Podcast Query Tests -------------------------------\\
 
 	@Test
 	public void canFindPodcastByTitleContainingCEO () {
@@ -85,6 +95,26 @@ class JustListenApiApplicationTests {
 		assertThat(found.size()).isEqualTo(3);
 	}
 
+
+	//------------------------------ Contributor Query Tests -------------------------------\\
+
+	@Test
+	public void canFindContributorByNameJames () {
+		List<Contributor> found = contributorRepository.findContributorByNameContainingIgnoreCase("JaMes");
+		assertThat(found.size()).isEqualTo(2);
+	}
+
+	@Test
+	public void canFindContributorByProfessionResearcher () {
+		List<Contributor> found = contributorRepository.findContributorByProfessionContainingIgnoreCase("RESEARCHER");
+		assertThat(found.size()).isEqualTo(4);
+	}
+
+	@Test
+	public void canFindContributorByIsPresenterTrue () {
+		List<Contributor> found = contributorRepository.findContributorByIsPresenter(true);
+		assertThat(found.size()).isEqualTo(7);
+	}
 
 
 }
