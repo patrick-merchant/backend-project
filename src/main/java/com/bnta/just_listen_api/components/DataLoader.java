@@ -84,8 +84,7 @@ public class DataLoader implements ApplicationRunner {
         Episode distractionPieces_Ep104 = new Episode("#104: James Acaster", "Prepare yourselves for another heavy hitting good'un as Pip is joined by " +
                 "none other than UK comedy titan and overlord James Acaster!", 103, LocalDate.of(2016, 6, 5), distractionPieces,
                 Arrays.asList(scroobiusPipPresenter, jamesAcasterGuest));
-        Episode distractionPieces_Ep325 = new Episode("#325: Isolation DrunkCast v.2 (pt. 1 of 3)", "We are still in lockdown (lockdown has been lifted), " +
-                "and while we’re all going in to work (no going into work) and staying alert (SO much more alert than usual), Pip decided to round up a willing crew for " +
+        Episode distractionPieces_Ep325 = new Episode("#325: Isolation DrunkCast v.2 (pt. 1 of 3)", "Pip decided to round up a willing crew for " +
                 "some further drunk antics by way of the second ISOLATION DRUNKCAST!", 96, LocalDate.of(2020, 5, 13), distractionPieces,
                 Arrays.asList(scroobiusPipPresenter, jamesAcasterGuest, edGambleGuest));
         Episode filmsToBeBuriedWith_Ep4 = new Episode("#4: Scroobius Pip", "What a perfect treat of a guest this week - yes indeed, it is the Distraction Pieces Network head " +
