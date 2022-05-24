@@ -9,6 +9,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -30,6 +32,7 @@ public class DataLoader implements ApplicationRunner {
                 "Comedy, Family, Factual", (float) 4.5, "Spotify, ApplePodcasts");
         Podcast podcast3 = new Podcast("The Diary of a CEO, With Steven Bartlett", "N/A", "This 29 year old dragon invites guests from different backgrounds to discuss what it's like to be an entrepreneur.",
                 "Business, Health", (float) 4.9, "Spotify, ApplePodcasts");
+        podcastRepository.saveAll(Arrays.asList(podcast1, podcast2, podcast3));
 
         // add some contributors.
 
