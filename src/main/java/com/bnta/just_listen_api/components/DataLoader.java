@@ -1,5 +1,6 @@
 package com.bnta.just_listen_api.components;
 
+import com.bnta.just_listen_api.models.Contributor;
 import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.ContributorRepository;
 import com.bnta.just_listen_api.repositories.EpisodeRepository;
@@ -35,6 +36,18 @@ public class DataLoader implements ApplicationRunner {
         podcastRepository.saveAll(Arrays.asList(podcast1, podcast2, podcast3));
 
         // add some contributors.
+        Contributor contributor1 = new Contributor("James Acaster", "Comedian", true);
+        Contributor contributor2 = new Contributor("Ed Gamble", "Comedian", true);
+        Contributor contributor3 = new Contributor("Scroobius Pip", "Podcaster", false);
+        Contributor contributor4 = new Contributor("Dan Schreiber", "Researcher, Podcaster", true);
+        Contributor contributor5 = new Contributor("James Harkin", "Researcher, Podcaster", true);
+        Contributor contributor6 = new Contributor("Andrew Hunter Murray", "Researcher, Podcaster", true);
+        Contributor contributor7 = new Contributor("Anna Ptaszynski", "Researcher, Podcaster", true);
+        Contributor contributor8 = new Contributor("Steven Bartlett", "Entrepreneur", true);
+        Contributor contributor9 = new Contributor("Simon Sinek", "Author, Public Speaker", false);
+        contributorRepository.saveAll(Arrays.asList(contributor1, contributor2, contributor3, contributor4, contributor5,
+                        contributor6, contributor7, contributor8, contributor9));
+
 
         // add some episodes.
 
