@@ -31,6 +31,19 @@ public class ContributorController {
         var contributor =  contributorRepository.findById(id);
         return new ResponseEntity<>(contributor, contributor.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
+    //UPDATE
+
+    @PutMapping(value="/contributors/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
+    public ResponseEntity<Contributor> putContributor(@RequestBody Contributor contributor, @PathVariable Long id){
+        Contributor contributorToUpdate = contributorRepository.findById(id).get();
+        contributorToUpdate.setName(contributor.getName());
+        contributorToUpdate.setProfession(contributor.getProfession());
+        contributorToUpdate.setEpisodesFeaturing(contributor.getEpisodesFeaturing());
+        contributorToUpdate.setPresenter(contributor.isPresenter());
+
+        contributorRepository.save(contributorToUpdate);
+        return new ResponseEntity<>(contributorToUpdate, HttpStatus.OK);
+    }
 
     // POST
     @PostMapping // localhost:8080/contributors
