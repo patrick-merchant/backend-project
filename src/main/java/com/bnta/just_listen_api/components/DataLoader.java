@@ -1,6 +1,7 @@
 package com.bnta.just_listen_api.components;
 
 import com.bnta.just_listen_api.models.Contributor;
+import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.ContributorRepository;
 import com.bnta.just_listen_api.repositories.EpisodeRepository;
@@ -10,10 +11,14 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 @Component
 public class DataLoader implements ApplicationRunner {
+
+    @Autowired
+    private PodcastRepository podcastRepository;
 
     @Autowired
     private ContributorRepository contributorRepository;
@@ -21,8 +26,6 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     private EpisodeRepository episodeRepository;
 
-    @Autowired
-    private PodcastRepository podcastRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -50,6 +53,21 @@ public class DataLoader implements ApplicationRunner {
 
 
         // add some episodes.
+        Episode p1Episode1 = new Episode("Ep 1: Scroobius Pip","It’s the grand opening of the magical restaurant and the" +
+                " first guest through the doors is Mr Podcast himself, Scroobius Pip.", 66, LocalDate.of(2018,12,05),
+                podcast1, Arrays.asList(contributor1,contributor2,contributor3));
+        Episode p2Episode1 = new Episode("Ep 1: No such thing as a magnetic skate board", "Dan, James, " +
+                "Anna and Andy discuss a cupboard full of clown heads, " +
+                "the robot that doesn’t jump over the moon and the rock and roll side of pension planning.",54,
+                LocalDate.of(2022, 05, 20), podcast2, Arrays.asList(contributor4, contributor5,
+                contributor6, contributor7));
+        Episode p3Episode1 = new Episode("Ep 1: Simon Sinek"," Simon Sinek is an author and public speaker, " +
+                "and one of the most interesting" +
+                " thinkers on business in the world today.", 95, LocalDate.of(2022, 05, 23), podcast3,
+                 Arrays.asList(contributor8, contributor9));
+        episodeRepository.saveAll(Arrays.asList(p1Episode1,p2Episode1,p3Episode1));
+
+
 
     }
 }
