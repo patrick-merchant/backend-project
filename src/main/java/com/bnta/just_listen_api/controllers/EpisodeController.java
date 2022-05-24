@@ -30,21 +30,21 @@ public class EpisodeController {
         var episode = episodeRepository.findById(id);
         return new ResponseEntity<>(episode, episode.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
-    //UPDATE
 
-    @PutMapping(value="/episodes/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
-    public ResponseEntity<Episode> putEpisode(@RequestBody Episode episode, @PathVariable Long id){
-        Episode episodeToUpdate = episodeRepository.findById(id).get();
-        episodeToUpdate.setName(episode.getName());
-        episodeToUpdate.setDescription(episode.getDescription());
-        episodeToUpdate.setDuration(episode.getDuration());
-        episodeToUpdate.setDatePosted(episode.getDatePosted());
-        episodeToUpdate.setContributors(episode.getContributors());
-        episodeToUpdate.setPodcast(episode.getPodcast());
-
-        episodeRepository.save(episodeToUpdate);
-        return new ResponseEntity<>(episodeToUpdate, HttpStatus.OK);
-    }
+//    //UPDATE
+//    @PutMapping(value="/episodes/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
+//    public ResponseEntity<Episode> putEpisode(@RequestBody Episode episode, @PathVariable Long id){
+//        Episode episodeToUpdate = episodeRepository.findById(id).get();
+//        episodeToUpdate.setName(episode.getName());
+//        episodeToUpdate.setDescription(episode.getDescription());
+//        episodeToUpdate.setDuration(episode.getDuration());
+//        episodeToUpdate.setDatePosted(episode.getDatePosted());
+//        episodeToUpdate.setContributors(episode.getContributors());
+//        episodeToUpdate.setPodcast(episode.getPodcast());
+//
+//        episodeRepository.save(episodeToUpdate);
+//        return new ResponseEntity<>(episodeToUpdate, HttpStatus.OK);
+//    }
 
     // POST
     @PostMapping // localhost:8080/episodes

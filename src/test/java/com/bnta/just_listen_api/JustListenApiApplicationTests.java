@@ -35,7 +35,7 @@ class JustListenApiApplicationTests {
 	@Test
 	public void canFindEpisodeByNameContainingEp1 () {
 		List<Episode> found = episodeRepository.findEpisodeByNameContainingIgnoreCase("ep 1");
-		assertThat(found.size()).isEqualTo(3);
+		assertThat(found.size()).isEqualTo(1);
 	}
 
 	@Test
@@ -47,7 +47,7 @@ class JustListenApiApplicationTests {
 	@Test
 	public void canFindEpisodeByNameContaining1 () {
 		List<Episode> found = episodeRepository.findEpisodeByNameContainingIgnoreCase("1");
-		assertThat(found.size()).isEqualTo(3);
+		assertThat(found.size()).isEqualTo(8);
 	}
 
 	@Test
@@ -80,19 +80,19 @@ class JustListenApiApplicationTests {
 	@Test
 	public void canFindPodcastByCategoryContainingComedy() {
 		List<Podcast> found = podcastRepository.findPodcastByCategoryContainingIgnoreCase("coMedy");
-		assertThat(found.size()).isEqualTo(2);
+		assertThat(found.size()).isEqualTo(4);
 	}
 
 	@Test
 	public void canFindPodcastByRatingGreaterThan3() {
 		List<Podcast> found = podcastRepository.findPodcastByRatingGreaterThan(3);
-		assertThat(found.size()).isEqualTo(3);
+		assertThat(found.size()).isEqualTo(5);
 	}
 
 	@Test
 	public void canFindPodcastBySourceContainingSpotify() {
 		List<Podcast> found = podcastRepository.findPodcastBySourcesContainingIgnoreCase("SpoTify");
-		assertThat(found.size()).isEqualTo(3);
+		assertThat(found.size()).isEqualTo(5);
 	}
 
 	@Test
@@ -106,7 +106,7 @@ class JustListenApiApplicationTests {
 	@Test
 	public void canFindContributorByNameJames () {
 		List<Contributor> found = contributorRepository.findContributorByNameContainingIgnoreCase("JaMes");
-		assertThat(found.size()).isEqualTo(2);
+		assertThat(found.size()).isEqualTo(3);
 	}
 
 	@Test
@@ -118,7 +118,7 @@ class JustListenApiApplicationTests {
 	@Test
 	public void canFindContributorByIsPresenterTrue () {
 		List<Contributor> found = contributorRepository.findContributorByIsPresenter(true);
-		assertThat(found.size()).isEqualTo(7);
+		assertThat(found.size()).isEqualTo(9);
 	}
 
 
