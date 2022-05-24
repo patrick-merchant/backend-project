@@ -1,6 +1,0 @@
-2022-05-24 11:08:32 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'It\\2019s the grand opening of the magical restaurant and the first guest thro... (329)"; SQL statement:
-insert into episodes (id, date_posted, description, duration, name, podcast_id) values (default, ?, ?, ?, ?, ?) [22001-212]
-2022-05-24 11:09:50 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'It\\2019s the grand opening of the magical restaurant and the first guest thro... (329)"; SQL statement:
-insert into episodes (id, date_posted, description, duration, name, podcast_id) values (default, ?, ?, ?, ?, ?) [22001-212]
