@@ -106,7 +106,6 @@ public class DataLoader implements ApplicationRunner {
         Episode filmsToBeBuriedWith_Ep104 = new Episode("#104: Ed Gamble - The Resurrection", "Now I know what you’re all thinking, didn’t Ed die in an earlier episode " +
                 "yadda yadda yadda but HOLD ON… Explanations are needed." , 63, LocalDate.of(2020, 7, 16),
                 filmsToBeBuriedWith, Arrays.asList(brettGoldsteinPresenter, edGambleGuest));
-
         episodeRepository.saveAll(Arrays.asList(offMenu_Ep1, offMenu_EpGoldstein1, noSuchThing_Ep1, diaryOfACEO_Ep145,
                 distractionPieces_Ep265, distractionPieces_Ep104, distractionPieces_Ep325, filmsToBeBuriedWith_Ep4, filmsToBeBuriedWith_Ep150, filmsToBeBuriedWith_Ep1, filmsToBeBuriedWith_Ep100,
                 filmsToBeBuriedWith_Ep9, filmsToBeBuriedWith_Ep104));
