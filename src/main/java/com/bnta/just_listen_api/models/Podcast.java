@@ -19,7 +19,7 @@ public class Podcast {
     private String title;
 
     @Column
-    private String triggerWarning;
+    private String contentNote;
 
     @Column
     private String description;
@@ -43,10 +43,10 @@ public class Podcast {
     }
 
     // CONSTRUCTOR
-    public Podcast(String title, String triggerWarning, String description, String category,
+    public Podcast(String title, String contentNote, String description, String category,
                    float rating, String sources) {
         this.title = title;
-        this.triggerWarning = triggerWarning;
+        this.contentNote = contentNote;
         this.description = description;
         this.category = category;
         this.rating = rating;
@@ -68,12 +68,12 @@ public class Podcast {
         this.title = title;
     }
 
-    public String getTriggerWarning() {
-        return triggerWarning;
+    public String getContentNote() {
+        return contentNote;
     }
 
-    public void setTriggerWarning(String triggerWarning) {
-        this.triggerWarning = triggerWarning;
+    public void setContentNote(String contentNote) {
+        this.contentNote = contentNote;
     }
 
     public String getDescription() {
@@ -122,7 +122,7 @@ public class Podcast {
         return "Podcast{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", triggerWarning='" + triggerWarning + '\'' +
+                ", contentNote='" + contentNote + '\'' +
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
                 ", rating=" + rating +
