@@ -18,13 +18,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class JustListenApiApplicationTests {
 
 	@Autowired
-	EpisodeRepository episodeRepository;
+	private EpisodeRepository episodeRepository;
 
 	@Autowired
-	PodcastRepository podcastRepository;
+	private PodcastRepository podcastRepository;
 
 	@Autowired
-	ContributorRepository contributorRepository;
+	private ContributorRepository contributorRepository;
 
 	@Test
 	void contextLoads() {
@@ -93,6 +93,11 @@ class JustListenApiApplicationTests {
 	public void canFindPodcastBySourceContainingSpotify() {
 		List<Podcast> found = podcastRepository.findPodcastBySourcesContainingIgnoreCase("SpoTify");
 		assertThat(found.size()).isEqualTo(3);
+	}
+
+	@Test
+	public void canFindEpisodesByNameContainingEp1ScroobiusPip() {
+		assertThat(podcastRepository.findByPodcastEpisodesNameContainingIgnoreCase("Ep 1: Scroobius Pip").size()).isEqualTo(1);
 	}
 
 
