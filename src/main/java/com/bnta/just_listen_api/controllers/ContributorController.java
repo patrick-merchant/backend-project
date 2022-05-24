@@ -19,10 +19,23 @@ public class ContributorController {
     @Autowired
     private ContributorRepository contributorRepository;
 
-    // INDEX
-    @GetMapping // localhost:8080/contributors
-    public ResponseEntity<List<Contributor>> getContributors() {
-        return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
+//    // INDEX - Old version
+//    @GetMapping // localhost:8080/contributors
+//    public ResponseEntity<List<Contributor>> getContributors() {
+//        return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
+//    }
+
+    // INDEX AND FILTERS
+    @GetMapping
+    public ResponseEntity<List<Contributor>> getAllContributorsAndFilters(
+            @RequestParam(required = false, name = "name") String name
+    ){
+        if(name != null){
+            return new ResponseEntity<>(contributorRepository.findContributorByNameContainingIgnoreCase(name),
+                    HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
     }
 
     // SHOW
