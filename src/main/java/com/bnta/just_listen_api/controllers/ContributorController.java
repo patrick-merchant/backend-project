@@ -2,6 +2,7 @@ package com.bnta.just_listen_api.controllers;
 
 
 import com.bnta.just_listen_api.models.Contributor;
+import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.repositories.ContributorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,9 +42,10 @@ public class ContributorController {
 
     // DELETE
     @DeleteMapping("/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
-    public ResponseEntity<Long> deleteContributor (@PathVariable("id") Long id) {
+    public ResponseEntity<Optional<Contributor>> deleteContributor(@PathVariable Long id) {
+        var contributor = contributorRepository.findById(id);
         contributorRepository.deleteById(id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }
+        return new ResponseEntity(contributorRepository.findAll(), contributor.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    } // ToDo: need to test
 
 }

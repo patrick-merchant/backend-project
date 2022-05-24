@@ -1,5 +1,6 @@
 package com.bnta.just_listen_api.controllers;
 
+import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.PodcastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,9 @@ public class PodcastController {
 
     // DELETE
     @DeleteMapping("/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
-    public ResponseEntity<Long> deletePodcast(@PathVariable("id") Long id) {
+    public ResponseEntity<Optional<Podcast>> deletePodcast (@PathVariable Long id) {
+        var podcast = podcastRepository.findById(id);
         podcastRepository.deleteById(id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }
+        return new ResponseEntity(podcastRepository.findAll(), podcast.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    } // ToDo: need to test
 }
