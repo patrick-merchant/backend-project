@@ -30,42 +30,42 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // add some podcasts.
-        Podcast podcast1 = new Podcast("Off Menu", "N/A", "Ed Gamble and James Acaster interview celebrity guests by discussing their dream menu!",
+        Podcast offMenu = new Podcast("Off Menu", "N/A", "Ed Gamble and James Acaster interview celebrity guests by discussing their dream menu!",
                 "Comedy, Family", (float) 4.9, "Spotify, www.offmenupodcast.co.uk, ApplePodcasts, ACast");
-        Podcast podcast2 = new Podcast("No Such Thing As A Fish", "N/A", "The braniacs behind QI present their favourite facts each week.",
+        Podcast noSuchThing = new Podcast("No Such Thing As A Fish", "N/A", "The braniacs behind QI present their favourite facts each week.",
                 "Comedy, Family, Factual", (float) 4.5, "Spotify, ApplePodcasts");
-        Podcast podcast3 = new Podcast("The Diary of a CEO, With Steven Bartlett", "N/A", "This 29 year old dragon invites guests from different backgrounds to discuss what it's like to be an entrepreneur.",
+        Podcast diaryOfACEO = new Podcast("The Diary of a CEO, With Steven Bartlett", "N/A", "This 29 year old dragon invites guests from different backgrounds to discuss what it's like to be an entrepreneur.",
                 "Business, Health", (float) 4.9, "Spotify, ApplePodcasts");
-        podcastRepository.saveAll(Arrays.asList(podcast1, podcast2, podcast3));
+        podcastRepository.saveAll(Arrays.asList(offMenu, noSuchThing, diaryOfACEO));
 
         // add some contributors.
-        Contributor contributor1 = new Contributor("James Acaster", "Comedian", true);
-        Contributor contributor2 = new Contributor("Ed Gamble", "Comedian", true);
-        Contributor contributor3 = new Contributor("Scroobius Pip", "Podcaster", false);
-        Contributor contributor4 = new Contributor("Dan Schreiber", "Researcher, Podcaster", true);
-        Contributor contributor5 = new Contributor("James Harkin", "Researcher, Podcaster", true);
-        Contributor contributor6 = new Contributor("Andrew Hunter Murray", "Researcher, Podcaster", true);
-        Contributor contributor7 = new Contributor("Anna Ptaszynski", "Researcher, Podcaster", true);
-        Contributor contributor8 = new Contributor("Steven Bartlett", "Entrepreneur", true);
-        Contributor contributor9 = new Contributor("Simon Sinek", "Author, Public Speaker", false);
-        contributorRepository.saveAll(Arrays.asList(contributor1, contributor2, contributor3, contributor4, contributor5,
-                        contributor6, contributor7, contributor8, contributor9));
+        Contributor jamesAcaster = new Contributor("James Acaster", "Comedian", true);
+        Contributor edGamble = new Contributor("Ed Gamble", "Comedian", true);
+        Contributor scroobiusPip = new Contributor("Scroobius Pip", "Podcaster", false);
+        Contributor danSchreiber = new Contributor("Dan Schreiber", "Researcher, Podcaster", true);
+        Contributor jamesHarkin = new Contributor("James Harkin", "Researcher, Podcaster", true);
+        Contributor andrewHunterMurray = new Contributor("Andrew Hunter Murray", "Researcher, Podcaster", true);
+        Contributor annaPtaszynski = new Contributor("Anna Ptaszynski", "Researcher, Podcaster", true);
+        Contributor stevenBartlett = new Contributor("Steven Bartlett", "Entrepreneur", true);
+        Contributor simonSinek = new Contributor("Simon Sinek", "Author, Public Speaker", false);
+        contributorRepository.saveAll(Arrays.asList(jamesAcaster, edGamble, scroobiusPip, danSchreiber, jamesHarkin,
+                        andrewHunterMurray, annaPtaszynski, stevenBartlett, simonSinek));
 
 
         // add some episodes.
-        Episode p1Episode1 = new Episode("Ep 1: Scroobius Pip","It’s the grand opening of the magical restaurant and the" +
+        Episode offMenu_Ep1 = new Episode("Ep 1: Scroobius Pip","It’s the grand opening of the magical restaurant and the" +
                 " first guest through the doors is Mr Podcast himself, Scroobius Pip.", 66, LocalDate.of(2018,12,05),
-                podcast1, Arrays.asList(contributor1,contributor2,contributor3));
-        Episode p2Episode1 = new Episode("Ep 1: No such thing as a magnetic skate board", "Dan, James, " +
+                offMenu, Arrays.asList(jamesAcaster,edGamble,scroobiusPip));
+        Episode noSuchThing_Ep1 = new Episode("No Such Thing As A Magnetic Skate Board", "Dan, James, " +
                 "Anna and Andy discuss a cupboard full of clown heads, " +
                 "the robot that doesn’t jump over the moon and the rock and roll side of pension planning.",54,
-                LocalDate.of(2022, 05, 20), podcast2, Arrays.asList(contributor4, contributor5,
-                contributor6, contributor7));
-        Episode p3Episode1 = new Episode("Ep 1: Simon Sinek"," Simon Sinek is an author and public speaker, " +
+                LocalDate.of(2022, 05, 20), noSuchThing, Arrays.asList(danSchreiber, jamesHarkin,
+                andrewHunterMurray, annaPtaszynski));
+        Episode diaryOfACEO_Ep145 = new Episode("E145: Simon Sinek: The Number One Reason Why You're Not Succeeding"," Simon Sinek is an author and public speaker, " +
                 "and one of the most interesting" +
-                " thinkers on business in the world today.", 95, LocalDate.of(2022, 05, 23), podcast3,
-                 Arrays.asList(contributor8, contributor9));
-        episodeRepository.saveAll(Arrays.asList(p1Episode1,p2Episode1,p3Episode1));
+                " thinkers on business in the world today.", 95, LocalDate.of(2022, 05, 23), diaryOfACEO,
+                 Arrays.asList(stevenBartlett, simonSinek));
+        episodeRepository.saveAll(Arrays.asList(offMenu_Ep1,noSuchThing_Ep1,diaryOfACEO_Ep145));
 
 
 
