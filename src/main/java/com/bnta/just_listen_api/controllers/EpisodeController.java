@@ -33,6 +33,7 @@ public class EpisodeController {
     ) {
         String name = requestParams.get("name");
         String description = requestParams.get("description");
+        String contributorName = requestParams.get("contributorName");
         if (name != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByNameContainingIgnoreCase(name),
                     HttpStatus.OK);
@@ -41,6 +42,9 @@ public class EpisodeController {
                     HttpStatus.OK);
         } else if (duration != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByDurationLessThan(duration),
+                    HttpStatus.OK);
+        } else if (contributorName != null) {
+            return new ResponseEntity<>(episodeRepository.findEpisodeByContributorsNameContainingIgnoreCase(contributorName),
                     HttpStatus.OK);
         }
 //        else if (dateposted != null) {
