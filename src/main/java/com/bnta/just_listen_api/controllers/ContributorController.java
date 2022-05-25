@@ -2,7 +2,6 @@ package com.bnta.just_listen_api.controllers;
 
 
 import com.bnta.just_listen_api.models.Contributor;
-import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.repositories.ContributorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -93,16 +92,28 @@ public class ContributorController {
         return  new ResponseEntity<>(newContributor, HttpStatus.CREATED);
     }
 
-    // DELETE
-    @DeleteMapping("/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<Contributor>> deleteContributor(@PathVariable Long id) {
+//    // DELETE
+//    @DeleteMapping("/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
+//    public ResponseEntity<Optional<Contributor>> deleteContributor(@PathVariable Long id) {
+//        var contributor = contributorRepository.findById(id);
+//        if (contributor.isEmpty()){
+//            return new ResponseEntity<>(contributor, HttpStatus.NOT_FOUND);
+//        } else {
+//            contributorRepository.deleteById(id);
+//            return new ResponseEntity(contributorRepository.findAll(), HttpStatus.OK);
+//        }
+//        }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Optional<Contributor>>  deleteContributor(@PathVariable Long id)  {
         var contributor = contributorRepository.findById(id);
-        if (contributor.isEmpty()){
+        //List<Long> contributorEpIds = contributorRepository.episodeIdsOfContributor(id);
+        if(contributor.isEmpty()){
             return new ResponseEntity<>(contributor, HttpStatus.NOT_FOUND);
-        } else {
-            contributorRepository.deleteById(id);
-            return new ResponseEntity(contributorRepository.findAll(), HttpStatus.OK);
         }
-        } // ToDo: need to test
+        contributorRepository.removeContributor(id);
+        contributorRepository.deleteById(id);
+        return new ResponseEntity(contributorRepository.findAll(), HttpStatus.OK);
+    } // ToDo: need to test
 
 }
