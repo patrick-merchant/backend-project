@@ -18,4 +18,6 @@ public interface EpisodeRepository extends JpaRepository<Episode, Long> {
 //    List<Episode> findEpisodeByPodcastsNameOrderByDatePostedDesc (LocalDate datePosted);
     List<Episode> findEpisodeByDurationLessThan (int duration);
 
+    List<Episode> findEpisodeByContributorsNameContainingIgnoreCase (String name);
+
 }

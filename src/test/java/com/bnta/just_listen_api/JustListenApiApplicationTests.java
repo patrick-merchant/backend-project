@@ -62,6 +62,12 @@ class JustListenApiApplicationTests {
 		assertThat(found.size()).isEqualTo(3);
 	}
 
+	@Test
+	public void canFindEpisodeByContributorsNameContainingIgnoreCase() {
+		List<Episode> found = episodeRepository.findEpisodeByContributorsNameContainingIgnoreCase("James Acaster");
+		assertThat(found.size()).isEqualTo(6);
+	}
+
 
 	//------------------------------ Podcast Query Tests -------------------------------\\
 
