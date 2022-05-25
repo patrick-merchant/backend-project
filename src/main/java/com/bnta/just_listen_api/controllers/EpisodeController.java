@@ -66,7 +66,7 @@ public class EpisodeController {
             episodeRepository.deleteById(id);
             return new ResponseEntity(episodeRepository.findAll(), HttpStatus.OK);
         }
-    } // ToDo: need to test
+    }
 
 }
 

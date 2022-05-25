@@ -114,6 +114,6 @@ public class ContributorController {
         contributorRepository.removeContributor(id);
         contributorRepository.deleteById(id);
         return new ResponseEntity(contributorRepository.findAll(), HttpStatus.OK);
-    } // ToDo: need to test
+    }
 
 }

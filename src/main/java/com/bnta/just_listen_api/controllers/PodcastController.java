@@ -67,6 +67,6 @@ public class PodcastController {
             podcastRepository.deleteById(id);
             return new ResponseEntity(podcastRepository.findAll(), HttpStatus.OK);
         }
-    } // ToDo: need to test
+    }
 
 }
