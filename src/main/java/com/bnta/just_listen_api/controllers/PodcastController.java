@@ -58,7 +58,7 @@ public class PodcastController {
             return new ResponseEntity<>(podcastRepository.findAll(),
                     HttpStatus.OK);
     }
-    
+
     // SHOW
     @GetMapping("/{id}") // localhost:8080/podcasts/1 (or any other id number i.e. 2, 3 etc.)
     public ResponseEntity<Optional<Podcast>> getPodcast(@PathVariable Long id) {
