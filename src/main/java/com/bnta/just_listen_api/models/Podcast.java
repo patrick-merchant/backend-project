@@ -33,7 +33,7 @@ public class Podcast {
     @Column
     private String sources;
 
-    @OneToMany(mappedBy = "podcast")
+    @OneToMany(mappedBy = "podcast", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"podcast"}) // is this necessary?
     private List<Episode> podcastEpisodes;
 
