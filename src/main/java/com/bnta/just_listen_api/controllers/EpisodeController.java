@@ -33,19 +33,21 @@ public class EpisodeController {
 
     //UPDATE
     @PutMapping(value="/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
-    public ResponseEntity<Episode> putEpisode(@RequestBody Episode episode, @PathVariable Long id){
-        Episode episodeToUpdate = episodeRepository.findById(id).get();
-        episodeToUpdate.setName(episode.getName());
-        episodeToUpdate.setDescription(episode.getDescription());
-        episodeToUpdate.setDuration(episode.getDuration());
-        episodeToUpdate.setDatePosted(episode.getDatePosted());
-        episodeToUpdate.setPodcast(episode.getPodcast());
-        episodeToUpdate.setContributors(episode.getContributors());
-
-
-        episodeRepository.save(episodeToUpdate);
-        return new ResponseEntity<>(episodeToUpdate, HttpStatus.OK);
-    }
+    public ResponseEntity<Optional<Episode>> putEpisode(@RequestBody Episode episode, @PathVariable Long id){
+        if(episodeRepository.findById(id).isEmpty()){
+            return new ResponseEntity<>(episodeRepository.findById(id), HttpStatus.NOT_FOUND);
+        } else {
+            Episode episodeToUpdate = episodeRepository.findById(id).get();
+            episodeToUpdate.setName(episode.getName());
+            episodeToUpdate.setDescription(episode.getDescription());
+            episodeToUpdate.setDuration(episode.getDuration());
+            episodeToUpdate.setDatePosted(episode.getDatePosted());
+            episodeToUpdate.setPodcast(episode.getPodcast());
+            episodeToUpdate.setContributors(episode.getContributors());
+            episodeRepository.save(episodeToUpdate);
+            return new ResponseEntity<>(episodeRepository.findById(id), HttpStatus.OK);
+            }
+        }
 
     // POST
     @PostMapping // localhost:8080/episodes
