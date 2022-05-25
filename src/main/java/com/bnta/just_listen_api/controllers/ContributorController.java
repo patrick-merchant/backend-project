@@ -40,7 +40,7 @@ public class ContributorController {
 //    }
 
     // INDEX and MULTIPLE FILTERS ATTEMPT
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<Contributor>> getAllContributorsAndFilters(
             @RequestParam Map<String,String> requestParams, Boolean isPresenter
             ){
@@ -53,12 +53,11 @@ public class ContributorController {
         if (profession != null){
             return new ResponseEntity<>(contributorRepository.findContributorByProfessionContainingIgnoreCase(profession),
                     HttpStatus.OK);
-        } else if
-        (isPresenter != null){
+        } else
+        if (isPresenter != null){
             return new ResponseEntity<>(contributorRepository.findContributorByIsPresenter(isPresenter),
                     HttpStatus.OK);
-        }
-        else
+        } else
             return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
     }
 

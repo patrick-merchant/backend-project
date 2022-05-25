@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -18,10 +20,35 @@ public class EpisodeController {
     @Autowired
     private EpisodeRepository episodeRepository;
 
-    // INDEX
-    @GetMapping // localhost:8080/episodes
-    public ResponseEntity<List<Episode>> getEpisodes() {
-        return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
+//    // INDEX
+//    @GetMapping // localhost:8080/episodes
+//    public ResponseEntity<List<Episode>> getEpisodes() {
+//        return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
+//    }
+
+    // INDEX AND MULTIPLE FILTERS
+    @GetMapping
+    public ResponseEntity<List<Episode>> getAllEpisodesAndFilters(
+            @RequestParam Map<String,String> requestParams, Integer duration, LocalDate dateposted
+    ) {
+        String name = requestParams.get("name");
+        String description = requestParams.get("description");
+        if (name != null) {
+            return new ResponseEntity<>(episodeRepository.findEpisodeByNameContainingIgnoreCase(name),
+                    HttpStatus.OK);
+        } else if (description != null) {
+            return new ResponseEntity<>(episodeRepository.findEpisodeByDescriptionContainingIgnoreCase(description),
+                    HttpStatus.OK);
+        } else if (duration != null) {
+            return new ResponseEntity<>(episodeRepository.findEpisodeByDurationLessThan(duration),
+                    HttpStatus.OK);
+        }
+//        else if (dateposted != null) {
+//            return new ResponseEntity<>(episodeRepository.findEpisodeByPodcastsNameOrderByDatePostedDesc(dateposted),
+//                    HttpStatus.OK);
+//        }
+        else
+            return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
     }
 
     // SHOW

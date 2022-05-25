@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,12 +20,45 @@ public class PodcastController {
     @Autowired
     private PodcastRepository podcastRepository;
 
-    // INDEX
-    @GetMapping // localhost:8080/podcasts
-    public ResponseEntity<List<Podcast>> getPodcasts() {
-        return new ResponseEntity<>(podcastRepository.findAll(), HttpStatus.OK);
-    }
+//    // INDEX
+//    @GetMapping // localhost:8080/podcasts
+//    public ResponseEntity<List<Podcast>> getPodcasts() {
+//        return new ResponseEntity<>(podcastRepository.findAll(), HttpStatus.OK);
+//    }
 
+    // INDEX AND MULTIPLE FILTERS
+    @GetMapping
+    public ResponseEntity<List<Podcast>> getAllPodcastsAndFilters(
+            @RequestParam Map<String, String> requestParams, Float rating
+    ){
+        String title = requestParams.get("title");
+        String description = requestParams.get("description");
+        String category = requestParams.get("category");
+        String sources = requestParams.get("sources");
+        if(title != null){
+            return new ResponseEntity<>(podcastRepository.findPodcastByTitleContainingIgnoreCase(title),
+                    HttpStatus.OK);
+        } else
+        if(description != null){
+            return new ResponseEntity<>(podcastRepository.findPodcastByDescriptionContainingIgnoreCase(description),
+                    HttpStatus.OK);
+        } else
+        if(category != null){
+            return new ResponseEntity<>(podcastRepository.findPodcastByCategoryContainingIgnoreCase(category),
+                    HttpStatus.OK);
+        } else
+        if(rating != null){
+            return new ResponseEntity<>(podcastRepository.findPodcastByRatingGreaterThan(rating),
+                    HttpStatus.OK);
+        } else
+        if(sources != null){
+            return new ResponseEntity<>(podcastRepository.findPodcastBySourcesContainingIgnoreCase(sources),
+                    HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(podcastRepository.findAll(),
+                    HttpStatus.OK);
+    }
+    
     // SHOW
     @GetMapping("/{id}") // localhost:8080/podcasts/1 (or any other id number i.e. 2, 3 etc.)
     public ResponseEntity<Optional<Podcast>> getPodcast(@PathVariable Long id) {
