@@ -60,8 +60,13 @@ public class EpisodeController {
     @DeleteMapping("/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
     public ResponseEntity<Optional<Episode>> deleteEpisode (@PathVariable Long id) {
         var episode = episodeRepository.findById(id);
-        episodeRepository.deleteById(id);
-        return new ResponseEntity(episodeRepository.findAll(), episode.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+        if(episode.isEmpty()){
+            return new ResponseEntity<>(episode, HttpStatus.NOT_FOUND);
+        } else {
+            episodeRepository.deleteById(id);
+            return new ResponseEntity(episodeRepository.findAll(), HttpStatus.OK);
+        }
     } // ToDo: need to test
+
 }
 

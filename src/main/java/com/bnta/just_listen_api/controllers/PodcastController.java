@@ -61,7 +61,12 @@ public class PodcastController {
     @DeleteMapping("/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
     public ResponseEntity<Optional<Podcast>> deletePodcast (@PathVariable Long id) {
         var podcast = podcastRepository.findById(id);
-        podcastRepository.deleteById(id);
-        return new ResponseEntity(podcastRepository.findAll(), podcast.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+        if(podcast.isEmpty()){
+            return new ResponseEntity<>(podcast, HttpStatus.NOT_FOUND);
+        } else {
+            podcastRepository.deleteById(id);
+            return new ResponseEntity(podcastRepository.findAll(), HttpStatus.OK);
+        }
     } // ToDo: need to test
+
 }

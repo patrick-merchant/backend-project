@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -26,18 +27,42 @@ public class ContributorController {
 //        return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
 //    }
 
-    // INDEX AND FILTERS
-    @GetMapping
+//    // INDEX AND FILTERS
+//    @GetMapping
+//    public ResponseEntity<List<Contributor>> getAllContributorsAndFilters(
+//            @RequestParam(required = false, name = "name") String name
+//    ){
+//        if(name != null){
+//            return new ResponseEntity<>(contributorRepository.findContributorByNameContainingIgnoreCase(name),
+//                    HttpStatus.OK);
+//        }
+//        else
+//            return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
+//    }
+
+    // INDEX and MULTIPLE FILTERS ATTEMPT
+    @GetMapping()
     public ResponseEntity<List<Contributor>> getAllContributorsAndFilters(
-            @RequestParam(required = false, name = "name") String name
-    ){
+            @RequestParam Map<String,String> requestParams, Boolean isPresenter
+            ){
+        String name = requestParams.get("name");
+        String profession = requestParams.get("profession");
         if(name != null){
             return new ResponseEntity<>(contributorRepository.findContributorByNameContainingIgnoreCase(name),
+                    HttpStatus.OK);
+        } else
+        if (profession != null){
+            return new ResponseEntity<>(contributorRepository.findContributorByProfessionContainingIgnoreCase(profession),
+                    HttpStatus.OK);
+        } else if
+        (isPresenter != null){
+            return new ResponseEntity<>(contributorRepository.findContributorByIsPresenter(isPresenter),
                     HttpStatus.OK);
         }
         else
             return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
     }
+
 
     // SHOW
     @GetMapping(value ="/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
@@ -72,8 +97,12 @@ public class ContributorController {
     @DeleteMapping("/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
     public ResponseEntity<Optional<Contributor>> deleteContributor(@PathVariable Long id) {
         var contributor = contributorRepository.findById(id);
-        contributorRepository.deleteById(id);
-        return new ResponseEntity(contributorRepository.findAll(), contributor.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
-    } // ToDo: need to test
+        if (contributor.isEmpty()){
+            return new ResponseEntity<>(contributor, HttpStatus.NOT_FOUND);
+        } else {
+            contributorRepository.deleteById(id);
+            return new ResponseEntity(contributorRepository.findAll(), HttpStatus.OK);
+        }
+        } // ToDo: need to test
 
 }
