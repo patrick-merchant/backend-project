@@ -49,7 +49,7 @@ public class PodcastController {
             return new ResponseEntity<>(podcastRepository.findById(id), HttpStatus.OK);
         }
     }
-    
+
     // POST
     @PostMapping // localhost:8080/podcasts
     public ResponseEntity<Podcast> createPodcast(@RequestBody Podcast newPodcast) {

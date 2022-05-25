@@ -2,6 +2,7 @@ package com.bnta.just_listen_api.controllers;
 
 
 import com.bnta.just_listen_api.models.Contributor;
+import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.repositories.ContributorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,13 +48,17 @@ public class ContributorController {
 
     //UPDATE
     @PutMapping(value="/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
-    public ResponseEntity<Contributor> putContributor(@RequestBody Contributor contributor, @PathVariable Long id){
-        Contributor contributorToUpdate = contributorRepository.findById(id).get();
-        contributorToUpdate.setName(contributor.getName());
-        contributorToUpdate.setProfession(contributor.getProfession());
-        contributorToUpdate.setPresenter(contributor.isPresenter());
-        contributorRepository.save(contributorToUpdate);
-        return new ResponseEntity<>(contributorToUpdate, HttpStatus.OK);
+    public ResponseEntity<Optional<Contributor>> putContributor(@RequestBody Contributor contributor, @PathVariable Long id){
+        if(contributorRepository.findById(id).isEmpty()) {
+            return new ResponseEntity<>(contributorRepository.findById(id), HttpStatus.NOT_FOUND);
+        } else {
+            Contributor contributorToUpdate = contributorRepository.findById(id).get();
+            contributorToUpdate.setName(contributor.getName());
+            contributorToUpdate.setProfession(contributor.getProfession());
+            contributorToUpdate.setPresenter(contributor.isPresenter());
+            contributorRepository.save(contributorToUpdate);
+            return new ResponseEntity<>(contributorRepository.findById(id), HttpStatus.OK);
+        }
     }
 
     // POST
