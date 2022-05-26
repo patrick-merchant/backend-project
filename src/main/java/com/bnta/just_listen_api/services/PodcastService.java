@@ -18,7 +18,10 @@ public class PodcastService {
 
     public Optional<Podcast> getRandomRecommendation(){
         List<Podcast> allPodcasts = podcastRepository.findAll();
-        int randomId = new Random().nextInt(allPodcasts.size());
+        int randomId = new Random().nextInt(allPodcasts.size()+1);
+        while(randomId == 0){
+            randomId = new Random().nextInt(allPodcasts.size()+1);
+        }
         return podcastRepository.findById((long) randomId);
     }
 

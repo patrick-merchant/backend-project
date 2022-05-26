@@ -2,6 +2,7 @@ package com.bnta.just_listen_api.controllers;
 
 import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.PodcastRepository;
+import com.bnta.just_listen_api.services.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class PodcastController {
     @Autowired
     private PodcastRepository podcastRepository;
 
+    @Autowired
+    private PodcastService podcastService;
+
 //    // INDEX
 //    @GetMapping // localhost:8080/podcasts
 //    public ResponseEntity<List<Podcast>> getPodcasts() {
@@ -27,45 +31,29 @@ public class PodcastController {
     // INDEX AND MULTIPLE FILTERS
     @GetMapping
     public ResponseEntity<List<Podcast>> getAllPodcastsAndFilters(
-            @RequestParam Map<String, String> requestParams, Float ratingGreaterThan
-    ){
+            @RequestParam Map<String, String> requestParams, Float rating
+    ) {
         String title = requestParams.get("title");
         String description = requestParams.get("description");
         String category = requestParams.get("category");
         String sources = requestParams.get("sources");
-        if(title != null){
+        if (title != null) {
             return new ResponseEntity<>(podcastRepository.findPodcastByTitleContainingIgnoreCase(title),
-                    podcastRepository.findPodcastByTitleContainingIgnoreCase(title).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
-        } else
-        if(description != null){
+        } else if (description != null) {
             return new ResponseEntity<>(podcastRepository.findPodcastByDescriptionContainingIgnoreCase(description),
-                    podcastRepository.findPodcastByDescriptionContainingIgnoreCase(description).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
-        } else
-        if(category != null){
+        } else if (category != null) {
             return new ResponseEntity<>(podcastRepository.findPodcastByCategoryContainingIgnoreCase(category),
-                    podcastRepository.findPodcastByCategoryContainingIgnoreCase(category).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
-        } else
-        if(ratingGreaterThan != null){
-            return new ResponseEntity<>(podcastRepository.findPodcastByRatingGreaterThan(ratingGreaterThan),
-                    podcastRepository.findPodcastByRatingGreaterThan(ratingGreaterThan).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
+        } else if (rating != null) {
+            return new ResponseEntity<>(podcastRepository.findPodcastByRatingGreaterThan(rating),
                     HttpStatus.OK);
-        } else
-        if(sources != null){
+        } else if (sources != null) {
             return new ResponseEntity<>(podcastRepository.findPodcastBySourcesContainingIgnoreCase(sources),
-                    podcastRepository.findPodcastBySourcesContainingIgnoreCase(sources).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
             return new ResponseEntity<>(podcastRepository.findAll(),
-                    podcastRepository.findAll().isEmpty() ?
-                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
     }
 
@@ -77,9 +65,9 @@ public class PodcastController {
     }
 
     //UPDATE
-    @PutMapping(value="/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<Podcast>> putPodcast(@RequestBody Podcast podcast, @PathVariable Long id){
-        if(podcastRepository.findById(id).isEmpty()){
+    @PutMapping(value = "/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
+    public ResponseEntity<Optional<Podcast>> putPodcast(@RequestBody Podcast podcast, @PathVariable Long id) {
+        if (podcastRepository.findById(id).isEmpty()) {
             return new ResponseEntity<>(podcastRepository.findById(id), HttpStatus.NOT_FOUND);
         } else {
             Podcast podcastToUpdate = podcastRepository.findById(id).get();
@@ -103,9 +91,9 @@ public class PodcastController {
 
     // DELETE
     @DeleteMapping("/{id}") // localhost:8080/podcasts/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<Podcast>> deletePodcast (@PathVariable Long id) {
+    public ResponseEntity<Optional<Podcast>> deletePodcast(@PathVariable Long id) {
         var podcast = podcastRepository.findById(id);
-        if(podcast.isEmpty()){
+        if (podcast.isEmpty()) {
             return new ResponseEntity<>(podcast, HttpStatus.NOT_FOUND);
         } else {
             podcastRepository.deleteById(id);
@@ -113,4 +101,8 @@ public class PodcastController {
         }
     }
 
+    @GetMapping("/getrec")
+    public ResponseEntity<Optional<Podcast>> giveUserAPodcastRec() throws Exception {
+        return new ResponseEntity(podcastService.getRandomRecommendation(), HttpStatus.OK);
+    }
 }
