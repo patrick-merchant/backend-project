@@ -36,15 +36,23 @@ public class EpisodeController {
         String contributorName = requestParams.get("contributorName");
         if (name != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByNameContainingIgnoreCase(name),
+                    episodeRepository.findEpisodeByNameContainingIgnoreCase(name).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else if (description != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByDescriptionContainingIgnoreCase(description),
+                    episodeRepository.findEpisodeByDescriptionContainingIgnoreCase(description).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else if (durationLessThan != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByDurationLessThan(durationLessThan),
+                    episodeRepository.findEpisodeByDurationLessThan(durationLessThan).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else if (contributorName != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByContributorsNameContainingIgnoreCase(contributorName),
+                    episodeRepository.findEpisodeByContributorsNameContainingIgnoreCase(contributorName).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         }
 //        else if (dateposted != null) {
@@ -52,7 +60,10 @@ public class EpisodeController {
 //                    HttpStatus.OK);
 //        }
         else
-            return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(episodeRepository.findAll(),
+                    episodeRepository.findAll().isEmpty() ?
+                    HttpStatus.NOT_FOUND :
+                    HttpStatus.OK);
     }
 
     // SHOW
