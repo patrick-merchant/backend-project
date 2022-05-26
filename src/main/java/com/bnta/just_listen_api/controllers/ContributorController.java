@@ -39,7 +39,7 @@ public class ContributorController {
 //            return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
 //    }
 
-    // INDEX and MULTIPLE FILTERS ATTEMPT
+    // INDEX and MULTIPLE FILTERS
     @GetMapping
     public ResponseEntity<List<Contributor>> getAllContributorsAndFilters(
             @RequestParam Map<String,String> requestParams, Boolean isPresenter

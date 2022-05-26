@@ -29,7 +29,7 @@ public class EpisodeController {
     // INDEX AND MULTIPLE FILTERS
     @GetMapping
     public ResponseEntity<List<Episode>> getAllEpisodesAndFilters(
-            @RequestParam Map<String,String> requestParams, Integer duration, LocalDate dateposted
+            @RequestParam Map<String,String> requestParams, Integer durationLessThan, LocalDate dateposted
     ) {
         String name = requestParams.get("name");
         String description = requestParams.get("description");
@@ -40,8 +40,8 @@ public class EpisodeController {
         } else if (description != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByDescriptionContainingIgnoreCase(description),
                     HttpStatus.OK);
-        } else if (duration != null) {
-            return new ResponseEntity<>(episodeRepository.findEpisodeByDurationLessThan(duration),
+        } else if (durationLessThan != null) {
+            return new ResponseEntity<>(episodeRepository.findEpisodeByDurationLessThan(durationLessThan),
                     HttpStatus.OK);
         } else if (contributorName != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByContributorsNameContainingIgnoreCase(contributorName),
