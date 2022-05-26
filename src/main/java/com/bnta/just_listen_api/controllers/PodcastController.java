@@ -74,8 +74,8 @@ public class PodcastController {
     // SHOW
     @GetMapping("/{id}") // localhost:8080/podcasts/1 (or any other id number i.e. 2, 3 etc.)
     public ResponseEntity<Optional<Podcast>> getPodcast(@PathVariable Long id) {
-        var product = podcastRepository.findById(id);
-        return new ResponseEntity<>(product, product.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+        var podcast = podcastRepository.findById(id);
+        return new ResponseEntity<>(podcast, podcast.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     //UPDATE
