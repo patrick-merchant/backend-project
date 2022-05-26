@@ -107,4 +107,21 @@ public class UserService {
         }
     }
 
+    public void deleteFromUserWatchedList(Long userid, Long episodeid) throws Exception {
+        List<Long> watchedIDs = userRepository.getUsersWatchedEpisodes(episodeid);
+        if (!userRepository.findById(userid).isEmpty()) {
+            if (!episodeService.findById(episodeid).isEmpty()) {
+                if (watchedIDs.contains(episodeid)) {
+                    userRepository.deleteFromUserWatchedList(userid, episodeid);
+                } else {
+                    throw new Exception("Error: the episode with id " + episodeid + " hasn't been marked as watched by the user with id " + userid);
+                }
+            } else {
+                throw new Exception("episode with id " + episodeid + " doesn't exist");
+            }
+        } else {
+            throw new Exception("user with id " + userid + " doesn't exist");
+        }
+    }
+
 }

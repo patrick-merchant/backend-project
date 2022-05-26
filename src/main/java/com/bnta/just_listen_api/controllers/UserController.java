@@ -91,5 +91,9 @@ public class UserController {
         userService.addWatchedEpisodeToUserWatchedList(userid, episodeid);
     }
 
+    @DeleteMapping("/deletewatched/{userid}/{episodeid}")
+    public void deleteFromUserWatchedList(@PathVariable Long userid, @PathVariable Long episodeid) throws Exception {
+        userService.deleteFromUserWatchedList(userid, episodeid);
+    }
 }
 

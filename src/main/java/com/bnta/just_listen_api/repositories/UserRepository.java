@@ -33,4 +33,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Transactional
     @Query(value = "INSERT INTO USERS_WATCHED_EPISODES (USER_ID, EPISODE_ID) VALUES(?1, ?2)", nativeQuery = true)
     void addEpToUsersWatchedList(Long userid, Long episodeid);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM users_watched_episodes WHERE user_id = ?1 AND episode_id = ?2", nativeQuery = true)
+    void deleteFromUserWatchedList(Long userId, Long episodeId);
 }
