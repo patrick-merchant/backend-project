@@ -69,5 +69,21 @@ public class UserController {
             return new ResponseEntity(userRepository.findAll(), HttpStatus.OK);
         }
     }
+
+
+    @PostMapping("/getrec/{id}")
+    public void giveUserAPodcastRec(@PathVariable Long id) throws Exception {
+        userService.giveUser3Recs(id);
+    }
+
+    @DeleteMapping("/deleterec/{userid}/{podcastid}")
+    public void deleteRec(@PathVariable Long userid, @PathVariable Long podcastid){
+        userService.deleteUsersRec(userid, podcastid);
+    }
+
+    @PostMapping("/replacerec/{userid}/{podcastid}")
+    public void replacePodcastRec(@PathVariable Long userid, @PathVariable Long podcastid) throws Exception {
+        userService.replacePodcastRec(userid, podcastid);
+    }
 }
 
