@@ -48,17 +48,26 @@ public class ContributorController {
         String profession = requestParams.get("profession");
         if(name != null){
             return new ResponseEntity<>(contributorRepository.findContributorByNameContainingIgnoreCase(name),
+                    contributorRepository.findContributorByNameContainingIgnoreCase(name).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
         if (profession != null){
             return new ResponseEntity<>(contributorRepository.findContributorByProfessionContainingIgnoreCase(profession),
+                    contributorRepository.findContributorByProfessionContainingIgnoreCase(profession).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
         if (isPresenter != null){
             return new ResponseEntity<>(contributorRepository.findContributorByIsPresenter(isPresenter),
+                    contributorRepository.findContributorByIsPresenter(isPresenter).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
-            return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(contributorRepository.findAll(),
+                    contributorRepository.findAll().isEmpty() ?
+                    HttpStatus.NOT_FOUND :
+                    HttpStatus.OK);
     }
 
 
