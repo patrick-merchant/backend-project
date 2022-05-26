@@ -29,7 +29,7 @@ public class PodcastController {
     // INDEX AND MULTIPLE FILTERS
     @GetMapping
     public ResponseEntity<List<Podcast>> getAllPodcastsAndFilters(
-            @RequestParam Map<String, String> requestParams, Float rating
+            @RequestParam Map<String, String> requestParams, Float ratingGreaterThan
     ){
         String title = requestParams.get("title");
         String description = requestParams.get("description");
@@ -47,8 +47,8 @@ public class PodcastController {
             return new ResponseEntity<>(podcastRepository.findPodcastByCategoryContainingIgnoreCase(category),
                     HttpStatus.OK);
         } else
-        if(rating != null){
-            return new ResponseEntity<>(podcastRepository.findPodcastByRatingGreaterThan(rating),
+        if(ratingGreaterThan != null){
+            return new ResponseEntity<>(podcastRepository.findPodcastByRatingGreaterThan(ratingGreaterThan),
                     HttpStatus.OK);
         } else
         if(sources != null){
