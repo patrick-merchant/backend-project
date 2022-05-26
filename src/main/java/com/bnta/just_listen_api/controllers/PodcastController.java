@@ -37,25 +37,37 @@ public class PodcastController {
         String sources = requestParams.get("sources");
         if(title != null){
             return new ResponseEntity<>(podcastRepository.findPodcastByTitleContainingIgnoreCase(title),
+                    podcastRepository.findPodcastByTitleContainingIgnoreCase(title).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
         if(description != null){
             return new ResponseEntity<>(podcastRepository.findPodcastByDescriptionContainingIgnoreCase(description),
+                    podcastRepository.findPodcastByDescriptionContainingIgnoreCase(description).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
         if(category != null){
             return new ResponseEntity<>(podcastRepository.findPodcastByCategoryContainingIgnoreCase(category),
+                    podcastRepository.findPodcastByCategoryContainingIgnoreCase(category).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
         if(ratingGreaterThan != null){
             return new ResponseEntity<>(podcastRepository.findPodcastByRatingGreaterThan(ratingGreaterThan),
+                    podcastRepository.findPodcastByRatingGreaterThan(ratingGreaterThan).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
         if(sources != null){
             return new ResponseEntity<>(podcastRepository.findPodcastBySourcesContainingIgnoreCase(sources),
+                    podcastRepository.findPodcastBySourcesContainingIgnoreCase(sources).isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         } else
             return new ResponseEntity<>(podcastRepository.findAll(),
+                    podcastRepository.findAll().isEmpty() ?
+                    HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
     }
 
