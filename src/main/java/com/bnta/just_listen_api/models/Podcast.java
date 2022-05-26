@@ -34,7 +34,7 @@ public class Podcast {
     private String sources;
 
     @OneToMany(mappedBy = "podcast", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"podcast"}) // is this necessary?
+    @JsonIgnoreProperties({"podcast", "contributors"})  // second ignored property makes data readable.
     private List<Episode> podcastEpisodes;
 
 

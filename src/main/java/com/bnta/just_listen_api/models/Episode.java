@@ -28,7 +28,7 @@ public class Episode {
     private LocalDate datePosted;
 
     @ManyToMany
-    @JsonIgnoreProperties({"episodes"})
+    @JsonIgnoreProperties({"episodes", "episodesFeaturing"}) // second ignored property makes data readable.
     @JoinTable(
             name = "episodes_contributors",
             joinColumns = {@JoinColumn(name = "episode_id", nullable = false)},

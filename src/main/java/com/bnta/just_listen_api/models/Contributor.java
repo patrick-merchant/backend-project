@@ -22,7 +22,7 @@ public class Contributor {
     private String profession;
 
     @ManyToMany(mappedBy = "contributors")
-    @JsonIgnoreProperties({"contributors"})
+    @JsonIgnoreProperties({"contributors", "podcast"}) // second ignored property makes data readable.
     private List<Episode> episodesFeaturing;
 
     @Column
