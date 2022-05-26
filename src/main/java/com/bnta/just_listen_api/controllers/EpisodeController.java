@@ -1,6 +1,5 @@
 package com.bnta.just_listen_api.controllers;
 
-import com.bnta.just_listen_api.models.Contributor;
 import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.repositories.EpisodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +54,7 @@ public class EpisodeController {
                     HttpStatus.NOT_FOUND :
                     HttpStatus.OK);
         }
-//        else if (dateposted != null) {
-//            return new ResponseEntity<>(episodeRepository.findEpisodeByPodcastsNameOrderByDatePostedDesc(dateposted),
-//                    HttpStatus.OK);
-//        }
+
         else
             return new ResponseEntity<>(episodeRepository.findAll(),
                     episodeRepository.findAll().isEmpty() ?

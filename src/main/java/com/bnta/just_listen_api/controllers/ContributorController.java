@@ -20,24 +20,12 @@ public class ContributorController {
     @Autowired
     private ContributorRepository contributorRepository;
 
-//    // INDEX - Old version
+    // INDEX
 //    @GetMapping // localhost:8080/contributors
 //    public ResponseEntity<List<Contributor>> getContributors() {
 //        return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
 //    }
 
-//    // INDEX AND FILTERS
-//    @GetMapping
-//    public ResponseEntity<List<Contributor>> getAllContributorsAndFilters(
-//            @RequestParam(required = false, name = "name") String name
-//    ){
-//        if(name != null){
-//            return new ResponseEntity<>(contributorRepository.findContributorByNameContainingIgnoreCase(name),
-//                    HttpStatus.OK);
-//        }
-//        else
-//            return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
-//    }
 
     // INDEX and MULTIPLE FILTERS
     @GetMapping
@@ -99,18 +87,6 @@ public class ContributorController {
         contributorRepository.save(newContributor);
         return  new ResponseEntity<>(newContributor, HttpStatus.CREATED);
     }
-
-//    // DELETE
-//    @DeleteMapping("/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
-//    public ResponseEntity<Optional<Contributor>> deleteContributor(@PathVariable Long id) {
-//        var contributor = contributorRepository.findById(id);
-//        if (contributor.isEmpty()){
-//            return new ResponseEntity<>(contributor, HttpStatus.NOT_FOUND);
-//        } else {
-//            contributorRepository.deleteById(id);
-//            return new ResponseEntity(contributorRepository.findAll(), HttpStatus.OK);
-//        }
-//        }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Optional<Contributor>>  deleteContributor(@PathVariable Long id)  {

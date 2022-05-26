@@ -1,7 +1,5 @@
 package com.bnta.just_listen_api.controllers;
 
-import com.bnta.just_listen_api.models.Contributor;
-import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.PodcastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
