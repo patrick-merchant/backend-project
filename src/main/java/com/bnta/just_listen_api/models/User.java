@@ -28,7 +28,7 @@ public class User {
     private Boolean isAdmin;
 
     @ManyToMany
-    @JsonIgnoreProperties({"users"})
+    @JsonIgnoreProperties({"users", "contributors"})
     @JoinTable(
             name = "users_watched_episodes",
             joinColumns = {@JoinColumn(name = "user_id", nullable = false)},
@@ -37,7 +37,7 @@ public class User {
 
 
     @ManyToMany
-    @JsonIgnoreProperties({"users"})
+    @JsonIgnoreProperties({"users", "podcastEpisodes"})
     @JoinTable(
             name = "users_recommended_podcasts",
             joinColumns = {@JoinColumn(name = "user_id", nullable = false)},
