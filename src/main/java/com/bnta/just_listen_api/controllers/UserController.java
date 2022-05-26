@@ -36,9 +36,9 @@ public class UserController {
     }
 
     //UPDATE
-    @PutMapping(value="/{id}") // localhost:8080/users/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<User>> putUser(@RequestBody User user, @PathVariable Long id){
-        if(userRepository.findById(id).isEmpty()){
+    @PutMapping(value = "/{id}") // localhost:8080/users/1 (or any other id number instead of 1)
+    public ResponseEntity<Optional<User>> putUser(@RequestBody User user, @PathVariable Long id) {
+        if (userRepository.findById(id).isEmpty()) {
             return new ResponseEntity<>(userRepository.findById(id), HttpStatus.NOT_FOUND);
         } else {
             User userToUpdate = userRepository.findById(id).get();
@@ -52,7 +52,7 @@ public class UserController {
 
     // POST
     @PostMapping // localhost:8080/users
-    public ResponseEntity<User> createUser(@RequestBody User newUser){
+    public ResponseEntity<User> createUser(@RequestBody User newUser) {
         userRepository.save(newUser);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
@@ -60,9 +60,9 @@ public class UserController {
 
     // DELETE
     @DeleteMapping("/{id}") // localhost:8080/users/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<User>> deleteUser (@PathVariable Long id) {
+    public ResponseEntity<Optional<User>> deleteUser(@PathVariable Long id) {
         var user = userRepository.findById(id);
-        if(user.isEmpty()){
+        if (user.isEmpty()) {
             return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
         } else {
             userRepository.deleteById(id);
@@ -77,7 +77,7 @@ public class UserController {
     }
 
     @DeleteMapping("/deleterec/{userid}/{podcastid}")
-    public void deleteRec(@PathVariable Long userid, @PathVariable Long podcastid){
+    public void deleteRec(@PathVariable Long userid, @PathVariable Long podcastid) {
         userService.deleteUsersRec(userid, podcastid);
     }
 
@@ -85,5 +85,11 @@ public class UserController {
     public void replacePodcastRec(@PathVariable Long userid, @PathVariable Long podcastid) throws Exception {
         userService.replacePodcastRec(userid, podcastid);
     }
+
+    @PostMapping("/addwatched/{userid}/{episodeid}")
+    public void addWatchedEpisodeToUserWatchedList(@PathVariable Long userid, @PathVariable Long episodeid) throws Exception {
+        userService.addWatchedEpisodeToUserWatchedList(userid, episodeid);
+    }
+
 }
 

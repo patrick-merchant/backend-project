@@ -4,6 +4,7 @@ import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,27 +13,38 @@ public class UserService {
 
     private UserRepository userRepository;
     private PodcastService podcastService;
+    private EpisodeService episodeService;
 
-    public UserService(UserRepository userRepository, PodcastService podcastService) {
+    public UserService(UserRepository userRepository, PodcastService podcastService, EpisodeService episodeService) {
         this.userRepository = userRepository;
         this.podcastService = podcastService;
+        this.episodeService = episodeService;
     }
 
-
+    // check if user has a rec
+    // max rec 3
+    // check if rec is already in there list
     public void giveUserAPodcastRec(Long id) throws Exception {
-        List<Long> watchedIDs = userRepository.getUsersWatched(id);
+        List<Long> watchedIDs = userRepository.getUsersWatchedPodcasts(id);
         List<Long> existingRecsIDs = userRepository.getUsersRecs(id);
         List<Podcast> allPodcasts = podcastService.findAll();
+        List<Long> randomIdList = new ArrayList<>();
         Long randomId = new Random().nextLong(allPodcasts.size() + 1);
+        randomIdList.add(randomId);
         if (!userRepository.findById(id).isEmpty()) {
-            if (existingRecsIDs.size() < 3) {
-                while (existingRecsIDs.contains(randomId) || watchedIDs.contains(randomId) || randomId == 0) {
-                    randomId = new Random().nextLong(allPodcasts.size() + 1);
-                }
-                userRepository.addRec(id, randomId);
+            if (watchedIDs.size() != allPodcasts.size()) {
+                if (existingRecsIDs.size() < 3) {
+                    while (existingRecsIDs.contains(randomId) || watchedIDs.contains(randomId) || randomId == 0) {
+                        randomId = new Random().nextLong(allPodcasts.size() + 1);
+                    }
 
+                    userRepository.addRec(id, randomId);
+
+                } else {
+                    throw new Exception("Sorry you can only have 3 recommendations at a time. Please delete one and then try again");
+                }
             } else {
-                throw new Exception("Sorry you can only have 3 recommendations at a time. Please delete one and then try again");
+                throw new Exception("Sorry we don't currently have any recommendations for you");
             }
         } else {
             throw new Exception("User with id " + id + " not found");
@@ -40,11 +52,24 @@ public class UserService {
     }
 
     public void giveUser3Recs(Long id) throws Exception {
+        List<Long> watchedIDs = userRepository.getUsersWatchedPodcasts(id);
+        List<Podcast> allPodcasts = podcastService.findAll();
         int count = 0;
+
+        if (watchedIDs.size() == allPodcasts.size() - 2) {
+            count = 1;
+        } else if (watchedIDs.size() == allPodcasts.size() - 1) {
+            count = 2;
+        } else if (watchedIDs.size() == allPodcasts.size()) {
+            throw new Exception("Sorry we don't currently have any recommendations for you");
+        }
+
+
         while (count < 3) {
             count++;
             giveUserAPodcastRec(id);
         }
+
     }
 
     public void deleteUsersRec(Long userid, Long podcastid) {
@@ -63,6 +88,23 @@ public class UserService {
             }
         }
 
+    }
+
+    public void addWatchedEpisodeToUserWatchedList(Long userid, Long episodeid) throws Exception {
+        List<Long> watchedIDs = userRepository.getUsersWatchedEpisodes(episodeid);
+        if (!userRepository.findById(userid).isEmpty()) {
+            if (!episodeService.findById(episodeid).isEmpty()) {
+                if (!watchedIDs.contains(episodeid)) {
+                    userRepository.addEpToUsersWatchedList(userid, episodeid);
+                } else {
+                    throw new Exception("The episode has already been marked as watched");
+                }
+            } else {
+                throw new Exception("episode with id " + episodeid + " doesn't exist");
+            }
+        } else {
+            throw new Exception("user with id " + userid + " doesn't exist");
+        }
     }
 
 }
