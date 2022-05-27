@@ -19,16 +19,10 @@ public class EpisodeController {
     @Autowired
     private EpisodeRepository episodeRepository;
 
-//    // INDEX
-//    @GetMapping // localhost:8080/episodes
-//    public ResponseEntity<List<Episode>> getEpisodes() {
-//        return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
-//    }
-
     // INDEX AND MULTIPLE FILTERS
     @GetMapping
     public ResponseEntity<List<Episode>> getAllEpisodesAndFilters(
-            @RequestParam Map<String,String> requestParams, Integer durationLessThan, LocalDate dateposted
+            @RequestParam Map<String, String> requestParams, Integer durationLessThan, LocalDate dateposted
     ) {
         String name = requestParams.get("name");
         String description = requestParams.get("description");
@@ -36,30 +30,28 @@ public class EpisodeController {
         if (name != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByNameContainingIgnoreCase(name),
                     episodeRepository.findEpisodeByNameContainingIgnoreCase(name).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
         } else if (description != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByDescriptionContainingIgnoreCase(description),
                     episodeRepository.findEpisodeByDescriptionContainingIgnoreCase(description).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
         } else if (durationLessThan != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByDurationLessThan(durationLessThan),
                     episodeRepository.findEpisodeByDurationLessThan(durationLessThan).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
         } else if (contributorName != null) {
             return new ResponseEntity<>(episodeRepository.findEpisodeByContributorsNameContainingIgnoreCase(contributorName),
                     episodeRepository.findEpisodeByContributorsNameContainingIgnoreCase(contributorName).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
-        }
-
-        else
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
+        } else
             return new ResponseEntity<>(episodeRepository.findAll(),
                     episodeRepository.findAll().isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
     }
 
     // SHOW
@@ -70,9 +62,9 @@ public class EpisodeController {
     }
 
     //UPDATE
-    @PutMapping(value="/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<Episode>> putEpisode(@RequestBody Episode episode, @PathVariable Long id){
-        if(episodeRepository.findById(id).isEmpty()){
+    @PutMapping(value = "/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
+    public ResponseEntity<Optional<Episode>> putEpisode(@RequestBody Episode episode, @PathVariable Long id) {
+        if (episodeRepository.findById(id).isEmpty()) {
             return new ResponseEntity<>(episodeRepository.findById(id), HttpStatus.NOT_FOUND);
         } else {
             Episode episodeToUpdate = episodeRepository.findById(id).get();
@@ -84,8 +76,8 @@ public class EpisodeController {
             episodeToUpdate.setContributors(episode.getContributors());
             episodeRepository.save(episodeToUpdate);
             return new ResponseEntity<>(episodeRepository.findById(id), HttpStatus.OK);
-            }
         }
+    }
 
     // POST
     @PostMapping // localhost:8080/episodes
@@ -96,9 +88,9 @@ public class EpisodeController {
 
     // DELETE
     @DeleteMapping("/{id}") // localhost:8080/episodes/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<Episode>> deleteEpisode (@PathVariable Long id) {
+    public ResponseEntity<Optional<Episode>> deleteEpisode(@PathVariable Long id) {
         var episode = episodeRepository.findById(id);
-        if(episode.isEmpty()){
+        if (episode.isEmpty()) {
             return new ResponseEntity<>(episode, HttpStatus.NOT_FOUND);
         } else {
             episodeRepository.deleteById(id);

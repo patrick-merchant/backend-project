@@ -1,4 +1,5 @@
 package com.bnta.just_listen_api.services;
+
 import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.PodcastRepository;
 import org.springframework.stereotype.Service;
@@ -16,20 +17,20 @@ public class PodcastService {
         this.podcastRepository = podcastRepository;
     }
 
-    public Optional<Podcast> getRandomRecommendation(){
+    public Optional<Podcast> getRandomRecommendation() {
         List<Podcast> allPodcasts = podcastRepository.findAll();
-        int randomId = new Random().nextInt(allPodcasts.size()+1);
-        while(randomId == 0){
-            randomId = new Random().nextInt(allPodcasts.size()+1);
+        int randomId = new Random().nextInt(allPodcasts.size() + 1);
+        while (randomId == 0) {
+            randomId = new Random().nextInt(allPodcasts.size() + 1);
         }
         return podcastRepository.findById((long) randomId);
     }
 
-    public List<Podcast> findAll(){
+    public List<Podcast> findAll() {
         return podcastRepository.findAll();
     }
 
-    public Optional<Podcast> findById(Long id){
+    public Optional<Podcast> findById(Long id) {
         return podcastRepository.findById(id);
     }
 }

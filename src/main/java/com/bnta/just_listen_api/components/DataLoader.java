@@ -1,4 +1,5 @@
 package com.bnta.just_listen_api.components;
+
 import com.bnta.just_listen_api.models.Contributor;
 import com.bnta.just_listen_api.models.Episode;
 import com.bnta.just_listen_api.models.Podcast;
@@ -33,6 +34,7 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
         // ADD PODCASTS
         Podcast offMenu = new Podcast("Off Menu", "N/A", "Ed Gamble and James Acaster interview celebrity guests by discussing their dream menu!",
                 "Comedy, Family", (float) 4.9, "Spotify, www.offmenupodcast.co.uk, ApplePodcasts, ACast");
@@ -50,6 +52,7 @@ public class DataLoader implements ApplicationRunner {
                 "Sport", (float) 3.7, "Spotify");
 
         podcastRepository.saveAll(Arrays.asList(offMenu, noSuchThing, diaryOfACEO, distractionPieces, filmsToBeBuriedWith, badTrueCrimePodcast, averageSportsPodcast));
+
 
         // ADD CONTRIBUTORS
         Contributor jamesAcasterPresenter = new Contributor("James Acaster", "Comedian", true);

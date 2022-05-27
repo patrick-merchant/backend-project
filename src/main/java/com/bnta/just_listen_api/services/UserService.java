@@ -4,7 +4,6 @@ import com.bnta.just_listen_api.models.Podcast;
 import com.bnta.just_listen_api.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,27 +20,25 @@ public class UserService {
         this.episodeService = episodeService;
     }
 
-    // check if user has a rec
-    // max rec 3
-    // check if rec is already in there list
+    // Check if a user has a recommendation
+    // Gives the user a maximum of 3 recommendations
+    // Check if the recommendation is already in the list
     public void giveUserAPodcastRec(Long id) throws Exception {
         List<Long> watchedIDs = userRepository.getUsersWatchedPodcasts(id);
         List<Long> existingRecsIDs = userRepository.getUsersRecs(id);
         List<Podcast> allPodcasts = podcastService.findAll();
-        List<Long> randomIdList = new ArrayList<>();
         Long randomId = new Random().nextLong(allPodcasts.size() + 1);
-        randomIdList.add(randomId);
+
         if (!userRepository.findById(id).isEmpty()) {
             if (watchedIDs.size() != allPodcasts.size()) {
                 if (existingRecsIDs.size() < 3) {
                     while (existingRecsIDs.contains(randomId) || watchedIDs.contains(randomId) || randomId == 0) {
                         randomId = new Random().nextLong(allPodcasts.size() + 1);
                     }
-
                     userRepository.addRec(id, randomId);
-
                 } else {
-                    throw new Exception("Sorry you can only have 3 recommendations at a time. Please delete one and then try again");
+                    throw new Exception("Sorry you can only have 3 recommendations at a time." +
+                            "Please delete one and then try again");
                 }
             } else {
                 throw new Exception("Sorry we don't currently have any recommendations for you");
@@ -50,6 +47,7 @@ public class UserService {
             throw new Exception("User with id " + id + " not found");
         }
     }
+
 
     public void giveUser3Recs(Long id) throws Exception {
         List<Long> watchedIDs = userRepository.getUsersWatchedPodcasts(id);
@@ -63,23 +61,19 @@ public class UserService {
         } else if (watchedIDs.size() == allPodcasts.size()) {
             throw new Exception("Sorry we don't currently have any recommendations for you");
         }
-
-
         while (count < 3) {
             count++;
             giveUserAPodcastRec(id);
         }
-
     }
 
     public void deleteUsersRec(Long userid, Long podcastid) {
         userRepository.deleteRec(userid, podcastid);
-
     }
 
     public void replacePodcastRec(Long userid, Long podcastid) throws Exception {
         List<Long> existingRecsIDs = userRepository.getUsersRecs(userid);
-        int count = 0;
+
         while (existingRecsIDs.contains(podcastid)) {
             if (existingRecsIDs.contains(podcastid)) {
                 deleteUsersRec(userid, podcastid);
@@ -87,8 +81,8 @@ public class UserService {
                 break;
             }
         }
-
     }
+
 
     public void addWatchedEpisodeToUserWatchedList(Long userid, Long episodeid) throws Exception {
         List<Long> watchedIDs = userRepository.getUsersWatchedEpisodes(episodeid);
@@ -107,6 +101,7 @@ public class UserService {
         }
     }
 
+
     public void deleteFromUserWatchedList(Long userid, Long episodeid) throws Exception {
         List<Long> watchedIDs = userRepository.getUsersWatchedEpisodes(episodeid);
         if (!userRepository.findById(userid).isEmpty()) {
@@ -123,5 +118,4 @@ public class UserService {
             throw new Exception("user with id " + userid + " doesn't exist");
         }
     }
-
 }

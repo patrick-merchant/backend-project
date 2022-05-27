@@ -20,56 +20,48 @@ public class ContributorController {
     @Autowired
     private ContributorRepository contributorRepository;
 
-    // INDEX
-//    @GetMapping // localhost:8080/contributors
-//    public ResponseEntity<List<Contributor>> getContributors() {
-//        return new ResponseEntity<>(contributorRepository.findAll(), HttpStatus.OK);
-//    }
-
 
     // INDEX and MULTIPLE FILTERS
     @GetMapping
     public ResponseEntity<List<Contributor>> getAllContributorsAndFilters(
-            @RequestParam Map<String,String> requestParams, Boolean isPresenter
-            ){
+            @RequestParam Map<String, String> requestParams, Boolean isPresenter
+    ) {
         String name = requestParams.get("name");
         String profession = requestParams.get("profession");
-        if(name != null){
+        if (name != null) {
             return new ResponseEntity<>(contributorRepository.findContributorByNameContainingIgnoreCase(name),
                     contributorRepository.findContributorByNameContainingIgnoreCase(name).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
-        } else
-        if (profession != null){
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
+        } else if (profession != null) {
             return new ResponseEntity<>(contributorRepository.findContributorByProfessionContainingIgnoreCase(profession),
                     contributorRepository.findContributorByProfessionContainingIgnoreCase(profession).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
-        } else
-        if (isPresenter != null){
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
+        } else if (isPresenter != null) {
             return new ResponseEntity<>(contributorRepository.findContributorByIsPresenter(isPresenter),
                     contributorRepository.findContributorByIsPresenter(isPresenter).isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
         } else
             return new ResponseEntity<>(contributorRepository.findAll(),
                     contributorRepository.findAll().isEmpty() ?
-                    HttpStatus.NOT_FOUND :
-                    HttpStatus.OK);
+                            HttpStatus.NOT_FOUND :
+                            HttpStatus.OK);
     }
 
 
     // SHOW
-    @GetMapping(value ="/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
+    @GetMapping(value = "/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
     public ResponseEntity<Optional<Contributor>> getContributor(@PathVariable Long id) {
-        var contributor =  contributorRepository.findById(id);
+        var contributor = contributorRepository.findById(id);
         return new ResponseEntity<>(contributor, contributor.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     //UPDATE
-    @PutMapping(value="/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
-    public ResponseEntity<Optional<Contributor>> putContributor(@RequestBody Contributor contributor, @PathVariable Long id){
-        if(contributorRepository.findById(id).isEmpty()) {
+    @PutMapping(value = "/{id}") // localhost:8080/contributors/1 (or any other id number instead of 1)
+    public ResponseEntity<Optional<Contributor>> putContributor(@RequestBody Contributor contributor, @PathVariable Long id) {
+        if (contributorRepository.findById(id).isEmpty()) {
             return new ResponseEntity<>(contributorRepository.findById(id), HttpStatus.NOT_FOUND);
         } else {
             Contributor contributorToUpdate = contributorRepository.findById(id).get();
@@ -83,16 +75,16 @@ public class ContributorController {
 
     // POST
     @PostMapping // localhost:8080/contributors
-    public ResponseEntity<Contributor> createContributor(@RequestBody Contributor newContributor){
+    public ResponseEntity<Contributor> createContributor(@RequestBody Contributor newContributor) {
         contributorRepository.save(newContributor);
-        return  new ResponseEntity<>(newContributor, HttpStatus.CREATED);
+        return new ResponseEntity<>(newContributor, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Optional<Contributor>>  deleteContributor(@PathVariable Long id)  {
+    public ResponseEntity<Optional<Contributor>> deleteContributor(@PathVariable Long id) {
         var contributor = contributorRepository.findById(id);
         //List<Long> contributorEpIds = contributorRepository.episodeIdsOfContributor(id);
-        if(contributor.isEmpty()){
+        if (contributor.isEmpty()) {
             return new ResponseEntity<>(contributor, HttpStatus.NOT_FOUND);
         }
         contributorRepository.removeContributor(id);

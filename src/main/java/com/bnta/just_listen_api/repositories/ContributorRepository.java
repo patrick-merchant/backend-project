@@ -21,7 +21,4 @@ public interface ContributorRepository extends JpaRepository<Contributor, Long> 
     @Query(value = "DELETE FROM episodes_contributors WHERE CONTRIBUTOR_ID = ?1", nativeQuery = true)
     void removeContributor(Long id);
 
-    //@Query(value = "SELECT episode_id FROM episodes_contributors INNER JOIN contributors ON contributor_id = contributors.id WHERE contributors.id =?1", nativeQuery = true)
-   // List<Long> episodeIdsOfContributor (long id);
-
 }

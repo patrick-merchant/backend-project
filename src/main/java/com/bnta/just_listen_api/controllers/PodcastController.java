@@ -22,11 +22,6 @@ public class PodcastController {
     @Autowired
     private PodcastService podcastService;
 
-//    // INDEX
-//    @GetMapping // localhost:8080/podcasts
-//    public ResponseEntity<List<Podcast>> getPodcasts() {
-//        return new ResponseEntity<>(podcastRepository.findAll(), HttpStatus.OK);
-//    }
 
     // INDEX AND MULTIPLE FILTERS
     @GetMapping
