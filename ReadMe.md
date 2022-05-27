@@ -108,13 +108,12 @@ We also wanted to expand on this further and challenge ourselves with the follow
 
 This section highlights the POJOS used within the project:
 
-| Plain Old Java Object (POJO) | Type| Input Structure|
-| ----------- | ----------- |---------|
-| Contributor |             |              |
-| Episode| Text |               |           |
-| Podcast| Text |           |               |
-| User| Text |                |             |
+<br>
+POJO TABLE:
 
+![POJO Table](Diagrams/Plain_Old_Java Object_(POJO).png)
+
+<br>
 
 
 ## Running the API - List of Possible Commands (CRUD Functionality):
