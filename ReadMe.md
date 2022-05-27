@@ -42,12 +42,16 @@ Currently, there are loads of podcasts spread across a multitude of platforms wh
 <br>
 
 ## Table of Contents:
-
-
-1. Setup and Instructions
-
-
-
+- [Setup and Instructions](#setup-and-instructions-for-using-the-project)
+- [UML](#unified-modelling-language-diagrams-uml)
+- [ERD](#entity-relationship-diagrams-erd)
+- [Minimum Viable Product (MVP)](#minimum-viable-product-mvp)
+- [Extensions](#extensions)
+- [Plain Old Java Objects (POJOs)](#plain-old-java-objects-pojos)
+- [Running the API - List of Possible Commands (CRUD Functionality):](#running-the-api---list-of-possible-commands-crud-functionality)
+- [Testing:](#testing)
+- [Further Implementations & Extensions](#further-implementations--extensions)
+- [Acknowledgements](#acknowledgments)
 
 
 ## Setup and Instructions for using the Project:
@@ -91,10 +95,13 @@ For our MVP, we wanted to create an API with full CRUD functionality.with 3x cla
 - Contributors
 
 ## Extensions:
-// Sabina
-// 'Shuffle' button (insert screenshot of code?)
+For our extension, we wanted to add a 'shuffle' button method to generate a random podcast suggestion.
 
-// Expand it further - user gets 3 random recommendations (insert screenshots of code?)
+We also wanted to expand on this further and challenge ourselves with the following extensions:
+- Add/remove episodes from the users watched list
+- Check if the user has a recommendation
+- Check if the recommendation is on their watched list
+- Give the user 3 recommendations that they have not seen/listend to before
 
 ## Plain Old Java Objects (POJOs):
 //Ana Paula
@@ -110,7 +117,7 @@ This section highlights the POJOS used within the project:
 
 
 
-## Running the API - List of Possible Commands (CRUD Functionality:)
+## Running the API - List of Possible Commands (CRUD Functionality):
 A couple of notes:
 - Each class has full CRUD functionality, and a number of filters.
 - Any filters that could take in Strings do - this allowed us to use derived queries with "ContainingIgnoreCase" to reduce user input error and offer multiple options in e.g. Podcast sources.
@@ -158,10 +165,15 @@ localhost:8080/ ...
 
 
 ## Testing:
-//Ana Paula
 
-## Thank you for reading this guide!
-//Ana Paula
+
+## Further Implementations & Extensions:
+Here are a few ideas on how we would like to expand on this API:
+- Give users personalised recommendations based on their most watched/listened-to categories
+- Give users the option to filter out recommendations based on their content note
+- Add an admin user who can add/remove a podcast
+
+Thank you for reading this guide!
 
 ## Acknowledgments:
-//Ana Paula
+We would like to thank the Bright Network Technology Academy team and especially our trainers Ana and Richard!
