@@ -64,27 +64,31 @@ git clone git@github.com:patrick-merchant/backend-project.git
 <br>
 MVP:
 
-![MVP UML](diagrams/uml/mvp_uml.png)
+![MVP UML](Diagrams/UML/mvp_uml.png)
 
 <br>
 
 Extension:
 
-![Extension UML](diagrams/uml/extension_uml.png)
+![Extension UML](Diagrams/UML/extension_uml.png)
 
 
 ### Entity Relationship Diagrams (ERD):
 <br>
 MVP:
 
-![MVP ERD](diagrams/erd/mvp_erd.png)
+![MVP ERD](Diagrams/erd/mvp_erd.png)
 
 <br>
 Extension:
 
-![Extension ERD](diagrams/erd/extension_erd.png)
+![Extension ERD](Diagrams/erd/extension_erd.png)
 
 ## Minimum Viable Product (MVP):
+For our MVP, we wanted to create an API with full CRUD functionality.with 3x classes:
+- Podcasts
+- Episodes
+- Contributors
 
 ## Extensions:
 // Sabina
