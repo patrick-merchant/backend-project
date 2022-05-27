@@ -8,7 +8,6 @@ Everyone has a podcast these days! With our JustListen API, you can quickly sear
 <br>
 
 ## Who we are:
----
 We are the team behind JustListen - 3 members of Cohort 5 from the Bright Network Technology Academy!
 
 - Ana Paula Lima 
@@ -27,7 +26,6 @@ We are the team behind JustListen - 3 members of Cohort 5 from the Bright Networ
 <br>
 
 ## Project Overview:
-----------
 As part of the Bright Network Technology Academy, we were assigned a group project to research, plan and develop an API within a week. As a group, we wanted to create an API which solved a problem.
 <br>
 
@@ -36,7 +34,6 @@ Currently, there are loads of podcasts spread across a multitude of platforms wh
 <br>
 
  ### This API features:
- -----
  
     - One-to-Many and Many-to-Many relationships
     - Derived queries and customer queries for multiple endpoints
@@ -45,7 +42,7 @@ Currently, there are loads of podcasts spread across a multitude of platforms wh
 <br>
 
 ## Table of Contents:
----
+
 
 1. Setup and Instructions
 
@@ -54,8 +51,6 @@ Currently, there are loads of podcasts spread across a multitude of platforms wh
 
 
 ## Setup and Instructions for using the Project:
------
-
 
 1. Make sure that you have Java 18 installed to run JustListen API
 2. Clone this repository by typing the following command into your terminal: <br>
@@ -64,7 +59,7 @@ git clone git@github.com:patrick-merchant/backend-project.git
 4. You can also view the SQL tables by connecting to the h2 datatbase at https://localhost:8080/h2 and entering the following URL in the 'JDBC URL' section - jdbc:h2:file:./db/just_listen_api
 
 ## Project Structure:
-### Unified Modelling Language Diagram (UML):
+### Unified Modelling Language Diagrams (UML):
 
 <br>
 MVP:
@@ -78,7 +73,7 @@ Extension:
 ![Extension UML](diagrams/uml/extension_uml.png)
 
 
-### Entity Relationship Diagram (ERD):
+### Entity Relationship Diagrams (ERD):
 <br>
 MVP:
 
@@ -87,7 +82,7 @@ MVP:
 <br>
 Extension:
 
-![Extension ERD](diagrams/erd/extension_erd.jpg)
+![Extension ERD](diagrams/erd/extension_erd.png)
 
 ## Minimum Viable Product (MVP):
 
