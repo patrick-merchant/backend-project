@@ -14,13 +14,15 @@ We are the team behind JustListen - 3 members of Cohort 5 of the Bright Network 
     - Github: [https://github.com/patrick-merchant], 
     - LinkedIn: [https://www.linkedin.com/in/patrick-merchant-71001520b/]
 
-- Sabina Rafique [https://github.com/SabinaRafique], [www.linkedin.com/in/sabina-r-2021321ba]
+- Sabina Rafique 
+    - Github: [https://github.com/SabinaRafique],
+    - LinkedIn: [www.linkedin.com/in/sabina-r-2021321ba]
 
 
 ## Project Overview:
 
 ## Table of Contents:
-//Ana paula 
+
 
 
 
@@ -32,22 +34,31 @@ We are the team behind JustListen - 3 members of Cohort 5 of the Bright Network 
 ## Project Structure:
 ### Unified Modelling Language Diagram (UML):
 ### Entity Relationship Diagram (ERD):
-![MVP](justListen API Project- MVP ERD.pdf)
+![MVP ERD](diagrams/erd/mvp_erd.pdf)
 
-![Extension ERD](justListen API Project- Extensions ERD.pdf)
+<img src = "diagrams/erd/mvp_erd.pdf">
+
+
+![Extension ERD](Diagrams/ERD%20/extension_erd.pdf)
 
 ## Minimum Viable Product (MVP):
 
 ## Extensions:
+// Sabina
 
 ## Plain Old Java Objects (POJOs):
 //Ana Paula 
 
+
+
 ## Running the API - List of Possible Commands (CRUD Functionality:)
+//Ana Paula
 
 ## Testing:
 //Ana Paula
 
 ## Thank you for reading this guide!
+//Ana Paula
 
 ## Acknowledgments:
+//Ana Paula
