@@ -104,7 +104,6 @@ We also wanted to expand on this further and challenge ourselves with the follow
 - Give the user 3 recommendations that they have not seen/listend to before
 
 ## Plain Old Java Objects (POJOs):
-//Ana Paula
 
 This section highlights the POJOS used within the project:
 
@@ -187,7 +186,6 @@ Postman:
 ![Postman Testing]( Testing Screenshots/justListen screenshots/Contributor_test/SHOW/SHOW id 1.png)
 
 <br>
-![image](https://user-images.githubusercontent.com/103422102/170737026-e232de84-c4c4-4b87-b871-3c8076bef9b2.png)
 
 
 ## Further Implementations & Extensions:
