@@ -16,7 +16,7 @@ We are the team behind JustListen - 3 members of Cohort 5 of the Bright Network 
 
 - Sabina Rafique 
     - Github: [https://github.com/SabinaRafique],
-    - LinkedIn: [www.linkedin.com/in/sabina-r-2021321ba]
+    - LinkedIn: [https://www.linkedin.com/in/sabina-r-2021321ba/]
 
 
 ## Project Overview:
@@ -34,12 +34,12 @@ We are the team behind JustListen - 3 members of Cohort 5 of the Bright Network 
 ## Project Structure:
 ### Unified Modelling Language Diagram (UML):
 ### Entity Relationship Diagram (ERD):
-![MVP ERD](diagrams/erd/mvp_erd.pdf)
+![MVP ERD](/diagrams/erd/mvp_erd.jpg)
 
 <img src = "diagrams/erd/mvp_erd.pdf">
 
 
-![Extension ERD](Diagrams/ERD%20/extension_erd.pdf)
+![Extension ERD](diagrams/erd/extension_erd.png)
 
 ## Minimum Viable Product (MVP):
 
