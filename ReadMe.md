@@ -164,6 +164,30 @@ localhost:8080/ ...
 
 
 ## Testing:
+The project involved different forms of testing including unit testing and testing via Postman. 
+
+Unit testing: This process allowed for the testing of the smallest code in the system that could be logically isolated i.e., the methods and derived queries. 
+
+Example of unit testing: 
+
+<br>
+Unit testing:
+
+![Unit testing]( Testing Screenshots/justListen screenshots/Unit testing Example.png )
+
+<br>
+
+Postman testing: This application was the HTTP client that tested HTTP requests, using a graphical user interface, through which we obtained different types of responses that needed to be subsequently validated.  
+
+Example of Postman testing: 
+
+<br>
+Postman:
+
+![Postman Testing]( Testing Screenshots/justListen screenshots/Contributor_test/SHOW/SHOW id 1.png)
+
+<br>
+![image](https://user-images.githubusercontent.com/103422102/170737026-e232de84-c4c4-4b87-b871-3c8076bef9b2.png)
 
 
 ## Further Implementations & Extensions:
