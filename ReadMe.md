@@ -45,6 +45,9 @@ We are the team behind JustListen - 3 members of Cohort 5 of the Bright Network 
 
 ## Extensions:
 // Sabina
+// 'Shuffle' button (insert screenshot of code?)
+
+// Expand it further - user gets 3 random recommendations (insert screenshots of code?)
 
 ## Plain Old Java Objects (POJOs):
 //Ana Paula 
@@ -53,6 +56,26 @@ We are the team behind JustListen - 3 members of Cohort 5 of the Bright Network 
 
 ## Running the API - List of Possible Commands (CRUD Functionality:)
 //Ana Paula
+
+localhost:8080/ ...
+
+| HTTP Request Path                                                        | Request Type | Description                                      |
+|:-------------------------------------------------------------------------|:-------------|:-------------------------------------------------|
+| `.../getAllFood `                                                        | `GET`        | Get All Food Entries                             |
+| `.../food/{id} `                                                         | `GET`        | Get Food Entries by Food Id                      |
+| `.../food/person/{id} `                                                  | `GET`        | Get Food Entries By Person's Id                  |
+| `.../food/person/{id}/week/{week} `                                      | `GET`        | Get Food Entries By Person's Id and Week         |
+| `.../food/person/{id}/week/{week}/day/{day} `                            | `GET`        | Get Food Entries By Person's Id and Week and Day |
+| `...food/person/mealtype/{mealtype} `                                    | `GET`        | Get Food Entries By Meal Type                    |
+| `.../food `                                                              | `POST`       | Add Food Entry                                   |
+| `.../food /{id}`                                                         | `PUT`        | Update Food Entry By Food Id                     |
+| `.../food/{id} `                                                         | `DELETE`     | Delete Food Entry                                |
+| `.../people `                                                            | `GET`        | Get All People                                   |
+| `.../people/{id} `                                                       | `GET`        | Get Person By Person's Id                        |
+| `.../person `                                                            | `POST`       | Add Person                                       |
+| `.../person/{id} `                                                       | `DELETE`     | Delete Person By Person's Id                     |
+| `.../person/{id} `                                                       | `PUT`        | Update Person By Person's Id                     |
+| `.../food/calorie_goals/week/{week}/day/{day} `                          | `GET`        | Get Daily Calories Goal By Week and Day          |
 
 ## Testing:
 //Ana Paula
