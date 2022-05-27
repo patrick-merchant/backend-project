@@ -110,7 +110,7 @@ This section highlights the POJOS used within the project:
 <br>
 POJO TABLE:
 
-![POJO Table](Diagrams/Plain_Old_Java Object_(POJO).png)
+![POJO Table](Diagrams/pojo.png)
 
 <br>
 
@@ -172,7 +172,7 @@ Example of unit testing:
 <br>
 Unit testing:
 
-![Unit testing](Testing Screenshots/justListen screenshots/Unit testing Example.png )
+![Unit testing](testing-screenshots/just-listen-screenshots-1/unit_testing_example.png )
 
 <br>
 
@@ -183,7 +183,7 @@ Example of Postman testing:
 <br>
 Postman:
 
-![Postman Testing](Testing Screenshots/justListen screenshots/Contributor_test/SHOW/SHOW id 1.png)
+![Postman Testing](testing-screenshots/just-listen-screenshots-2/Contributor_test/SHOW/show_id_1.png)
 
 <br>
 
